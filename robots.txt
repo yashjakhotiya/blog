@@ -1,1 +1,1 @@
-Sitemap: https://yashjakhotiya.github.io/blogs/sitemap.xml
+Sitemap: https://yashjakhotiya.github.io/blog/sitemap.xml
