@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>GSoC ‘20: Kubeflow Customer User Journey Notebooks with Tensorflow 2.x Keras | Blogs</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="GSoC ‘20: Kubeflow Customer User Journey Notebooks with Tensorflow 2.x Keras" />
+<meta name="author" content="<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An important milestone in my journey of open source" />
+<meta property="og:description" content="An important milestone in my journey of open source" />
+<link rel="canonical" href="https://yashjakhotiya.github.io/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html" />
+<meta property="og:url" content="https://yashjakhotiya.github.io/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html" />
+<meta property="og:site_name" content="Blogs" />
+<meta property="og:image" content="https://yashjakhotiya.github.io/blogs/images/2020-08-23-gsoc-20-tf-2-examples/logos.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-23T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"headline":"GSoC ‘20: Kubeflow Customer User Journey Notebooks with Tensorflow 2.x Keras","dateModified":"2020-08-23T00:00:00-05:00","description":"An important milestone in my journey of open source","datePublished":"2020-08-23T00:00:00-05:00","@type":"BlogPosting","image":"https://yashjakhotiya.github.io/blogs/images/2020-08-23-gsoc-20-tf-2-examples/logos.jpg","url":"https://yashjakhotiya.github.io/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blogs/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yashjakhotiya.github.io/blogs/feed.xml" title="Blogs" /><link rel="shortcut icon" type="image/x-icon" href="/blogs/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>GSoC ‘20: Kubeflow Customer User Journey Notebooks with Tensorflow 2.x Keras | Blogs</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="GSoC ‘20: Kubeflow Customer User Journey Notebooks with Tensorflow 2.x Keras" />
+<meta name="author" content="<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An important milestone in my journey of open source" />
+<meta property="og:description" content="An important milestone in my journey of open source" />
+<link rel="canonical" href="https://yashjakhotiya.github.io/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html" />
+<meta property="og:url" content="https://yashjakhotiya.github.io/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html" />
+<meta property="og:site_name" content="Blogs" />
+<meta property="og:image" content="https://yashjakhotiya.github.io/blogs/images/2020-08-23-gsoc-20-tf-2-examples/logos.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-23T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"headline":"GSoC ‘20: Kubeflow Customer User Journey Notebooks with Tensorflow 2.x Keras","dateModified":"2020-08-23T00:00:00-05:00","description":"An important milestone in my journey of open source","datePublished":"2020-08-23T00:00:00-05:00","@type":"BlogPosting","image":"https://yashjakhotiya.github.io/blogs/images/2020-08-23-gsoc-20-tf-2-examples/logos.jpg","url":"https://yashjakhotiya.github.io/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://yashjakhotiya.github.io/blogs/feed.xml" title="Blogs" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blogs/">Blogs</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blogs/about/">About Me</a><a class="page-link" href="/blogs/search/">Search</a><a class="page-link" href="/blogs/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">GSoC &#39;20: Kubeflow Customer User Journey Notebooks with Tensorflow 2.x Keras</h1><p class="page-description">An important milestone in my journey of open source</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-08-23T00:00:00-05:00" itemprop="datePublished">
+        Aug 23, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name"><a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a></span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blogs/categories/#gsoc">gsoc</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blogs/categories/#examples">examples</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blogs/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h1"><a href="#goal">Goal</a></li>
+<li class="toc-entry toc-h1"><a href="#the-kubeflow-community">The Kubeflow Community</a></li>
+<li class="toc-entry toc-h1"><a href="#the-project">The Project</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#repository-structure">Repository Structure</a></li>
+<li class="toc-entry toc-h2"><a href="#merged-prs">Merged PRs</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#special-thanks">Special Thanks</a></li>
+</ul><h1 id="introduction">
+<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>Open source software development and <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a>, both started long before the summer of 2020. When the world was starting to grapple with the realities of <a href="https://www.entrepreneur.com/article/354872">remote work</a>, open source community was already thriving on it. Over the course of my college years, I have found out three things that I am passionate about - open source, machine learning and <a href="https://landing.google.com/sre/">SRE</a>. <a href="https://www.kubeflow.org/">Kubeflow</a> has managed to incorporate all of these into one and doing a project with this organisation has been a dream come true!</p>
+
+<h1 id="goal">
+<a class="anchor" href="#goal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goal</h1>
+
+<p><a href="https://kubernetes.io/">Kubernetes</a> is already an industry-standard in managing cloud resources. <a href="https://www.kubeflow.org/">Kubeflow</a> is on its path to become an industry standard in managing machine learning workflows on cloud. Examples that illustrate Kubeflow functionalities using latest industry technologies make Kubeflow easier to use and more accessible to all potential users. This project has aimed at building samples for Jupyter notebook to Kubeflow deployment using Tensorflow 2.0 Keras for backend training code, illustrating customer user journey (CUJ) in the process. This project has also served as an hands-on to large scale application of machine learning bringing in the elements of DevOps and SRE and this has kept me motivated throughout the project.</p>
+
+<h1 id="the-kubeflow-community">
+<a class="anchor" href="#the-kubeflow-community" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Kubeflow Community</h1>
+
+<p>The <a href="https://www.kubeflow.org/docs/about/community/">Kubeflow community</a> is a highly approachable and closely-knit community that has been reaching out to and <a href="https://www.kubeflow.org/docs/about/gsoc/">helping</a> potential GSoC students well before the application period. Respecting this, I made sure to take feedback for my proposal of the <a href="https://summerofcode.withgoogle.com/projects/#5507335985823744">project idea</a> I chose, before the application deadline. Mentors <a href="https://github.com/terrytangyuan">Yuan Tang</a>, <a href="https://github.com/gaocegege">Ce Gao</a> and <a href="https://github.com/ChanYiLin">Jack Lin</a> were candid in providing me feedback and I refined and changed my proposal accordingly. To my sweet surprise, I got selected for the idea!😁 What has really helped me in these three months of coding period is that one month of <a href="https://developers.google.com/open-source/gsoc/timeline">community bonding</a> where I got to know the community and more about the technicalities of Kubeflow.</p>
+
+<h1 id="the-project">
+<a class="anchor" href="#the-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Project</h1>
+
+<p><img src="/blogs/images/2020-08-23-gsoc-20-tf-2-examples/kubeflow_components.png" alt="" title="Kubeflow Components"></p>
+
+<p>Examples created as part of this project needed to be easily reproducible to serve their purpose. Initially the underlying model decided to demonstrate Kubeflow functionalities was a BiDirectional RNN to be trained on IMDB large movie review <a href="http://ai.stanford.edu/%7Eamaas/data/sentiment/">dataset</a> for sentiment analysis based on a <a href="https://www.tensorflow.org/tutorials/text/text_classification_rnn">tensorflow tutorial</a>. Over the course of time, we decided to also add another set of examples using  a neural machine translation model in its backend trained on a Spanish to English <a href="http://www.manythings.org/anki/">dataset</a> based on another <a href="https://www.tensorflow.org/tutorials/text/nmt_with_attention">tensorflow tutorial</a>.</p>
+
+<p>The reasons for choosing these models were:</p>
+<ul>
+  <li>The <a href="https://github.com/kubeflow/examples">kubeflow/examples</a> repo needed more NLP-related tasks.</li>
+  <li>These were more of <em>hello world</em> tasks in the field of NLP. So that users who go through these samples need not worry about training code and focus more on Kubeflow’s functionalities.</li>
+  <li>These are based on tensorflow tutorials. Kubeflow tutorials based on Tensorflow tutorials show better coupling between the two.</li>
+</ul>
+
+<h2 id="repository-structure">
+<a class="anchor" href="#repository-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Repository Structure</h2>
+
+<p>I created a <a href="https://github.com/yashjakhotiya/kubeflow-gsoc-2020">repo</a> under my own profile to regularly push commits to and my mentors consistently reviewed the work I pushed there. This repo has all of my work with the log history preserved. Each of the two models has the following folder structure explaining core Kubeflow functionalities -</p>
+
+<ol>
+  <li>
+    <p><code class="highlighter-rouge">&lt;training-model&gt;.py</code> - This is the core training code upon which all subsequent examples showing Kubeflow functionalities are based. Please go through this first to know more about the machine learning task subsequent notebooks will manage. For example check the <a href="https://github.com/kubeflow/examples/blob/master/tensorflow_cuj/text_classification/text_classification_rnn.py">source code</a> of the model used for the text classification task.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">distributed_&lt;training-model&gt;.py</code> - To truly take advantage of multiple compute nodes, the training code has to be modified to support distributed training. The code in the above mentioned file is modified with Tensorflow’s <a href="https://www.tensorflow.org/guide/distributed_training">distributed training</a> strategy and hosted <a href="https://github.com/kubeflow/examples/blob/master/tensorflow_cuj/text_classification/distributed_text_classification_rnn.py">here</a>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">Dockerfile</code> - This is the dockerfile which is used to build Docker image of the training code. Some Kubeflow functionalities require that a docker image of the training code is built and hosted on a docker container registry. This Docker 101 <a href="https://www.docker.com/101-tutorial">tutorial</a> is a good starting point to get hands-on training on Docker. For complete starters in the field of containerization, this <a href="https://opensource.com/resources/what-docker">introduction</a> can serve as a good starting point. The dockerfile used with the source code mentioned above can be found <a href="https://github.com/kubeflow/examples/blob/master/tensorflow_cuj/text_classification/Dockerfile">here</a>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">fairing-with-python-sdk.ipynb</code> - Fairing is a Kubeflow functionality that lets you run model training tasks remotely. This is the Jupyter notebook which deploys a model training task on cloud using Kubeflow Fairing. Fairing does not require you to build a Docker image of the training code first. Hence, its training code resides in the same notebook. To know more about Kubeflow Fairing, please visit Fairing’s <a href="https://www.kubeflow.org/docs/components/fairing/fairing-overview/">official documentation</a>. To get a better idea about Fairing, you can take a look at the text classification Fairing notebook <a href="https://github.com/kubeflow/examples/blob/master/tensorflow_cuj/text_classification/fairing-with-python-sdk.ipynb">here</a>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">katib-with-python-sdk.ipynb</code> - <a href="https://www.kubeflow.org/docs/components/hyperparameter-tuning/hyperparameter/">Katib</a> is a Kubeflow functionality that lets you perform hyperparameter tuning experiments and reports best set of hyperparameters based on a provided metric. This is the Jupyter notebook which launches Katib hyperparameter tuning experiments using its <a href="https://github.com/kubeflow/katib/tree/master/sdk/python/v1alpha3">Python SDK</a>. Katib requires you to build and host a Docker image of your training code in a container registry. For this sample, we have used <a href="https://cloud.google.com/cloud-build/docs">gcloud builds</a> to build the required Docker image of the training code along with the training data and host it on <a href="https://cloud.google.com/container-registry">Google Container Registry</a>. This is the <a href="https://github.com/kubeflow/examples/blob/master/tensorflow_cuj/text_classification/katib-with-python-sdk.ipynb">notebook</a> we used to demonstrate Katib for the text classification task.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tfjob-with-python-sdk.ipynb</code> - <a href="https://www.kubeflow.org/docs/components/training/tftraining/">TFJobs</a> are used to run distributed training jobs over Kubernetes. With multiple workers, TFJob truly leverage the ability of your code to support distributed training. This Jupyter notebook demonstrates how to use TFJob. The Docker image built from the distributed version of our core training code is used in this notebook. TFJob notebook for the text classification task can be found <a href="https://github.com/kubeflow/examples/blob/master/tensorflow_cuj/text_classification/tfjob-with-python-sdk.ipynb">here</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tekton-pipeline-with-python-sdk.ipynb</code> - <a href="https://www.kubeflow.org/docs/pipelines/overview/pipelines-overview/">Kubeflow Pipeline</a> is a platform that lets you build, manage and deploy end-to-end machine learning workflows. This is a Jupyter notebook which bundles Katib hyperparameter tuning and TFJob distributed training into one Kubeflow pipeline. The pipeline used here uses <a href="https://cloud.google.com/tekton">Tekton</a> in its backend. Tekton is a Kubernetes resource to create efficient <a href="https://opensource.com/article/18/8/what-cicd">continuous integration and delivery</a> (CI/CD) systems. The pipeline notebook for the text classification task can be found at <a href="https://github.com/kubeflow/examples/blob/master/tensorflow_cuj/text_classification/tekton-pipeline-with-python-sdk.ipynb">this</a> place.</p>
+  </li>
+</ol>
+
+<h2 id="merged-prs">
+<a class="anchor" href="#merged-prs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Merged PRs</h2>
+
+<p>In the community bonding period, I opened numerous small issues and PRs solving these issues, as I encountered them when reading documentation or implementing an example. This was done in an effort to know more about the Kubeflow community.</p>
+
+<p>For the main project, I copied these built notebooks and the final work product into a directory created in my fork of the <a href="https://github.com/kubeflow/examples">kubeflow/examples</a> repo and created a <a href="https://github.com/kubeflow/examples/pull/816">PR</a> to add these notebooks in Kubeflow’s official repo. The PR got merged and the code currently resides in <a href="https://github.com/kubeflow/examples/tree/master/tensorflow_cuj">kubeflow/examples/tensorflow_cuj</a> directory marking the completion of the project.</p>
+
+<h1 id="special-thanks">
+<a class="anchor" href="#special-thanks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Special Thanks</h1>
+
+<p>Special thanks are due to -</p>
+<ul>
+  <li>My mentors for their valuable guidance throughout the project.</li>
+  <li>
+<a href="https://www.linkedin.com/in/jeremy-lewi-600aaa8/">Jeremy</a> and <a href="https://www.linkedin.com/in/sarahmaddox/">Sarah</a> for smooth conduction of the Kubeflow GSoC program.</li>
+  <li>The GSoC Discord <a href="https://discord.com/channels/708636399666069514/708636400097951744">Server</a> and the GSoC Telegram <a href="https://web.telegram.org/#/im?p=s1263176603_5411849872541551939">Channel</a> for the help, casual talks and a strong global student community.</li>
+</ul>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yashjakhotiya/blogs"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blogs/gsoc/examples/jupyter/2020/08/23/gsoc-20-tf-2-examples.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blogs/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blogs/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blogs/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>By Yash Jakhotiya</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/yashjakhotiya" title="yashjakhotiya"><svg class="svg-icon grey"><use xlink:href="/blogs/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/yash_jakhotiya" title="yash_jakhotiya"><svg class="svg-icon grey"><use xlink:href="/blogs/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
