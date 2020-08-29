@@ -4,8 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-# About Me
-
 A software developer with interests in machine learning, open source and site-reliability engineering, I currently work with [D.E. Shaw](https://www.deshaw.com/), a New York based hedge fund.
 
 I have previously worked at the Indian Institute of Science, Bangalore as a deep learning summer research intern. My work was based on Generative Adversarial Networks and sequence-to-sequence modelling.
