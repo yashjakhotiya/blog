@@ -7,7 +7,7 @@ comments: true
 hide: false
 search_exclude: false
 image: /images/2020-08-23-gsoc-20-tf-2-examples/logos.jpg
-categories: [open source, mlops]
+categories: [open-source, mlops]
 author: "<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
 
