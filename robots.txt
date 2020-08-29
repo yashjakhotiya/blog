@@ -1,1 +1,1 @@
-Sitemap: https://fastpages.fast.ai/sitemap.xml
+Sitemap: https://yashjakhotiya.github.io/blogs/sitemap.xml
