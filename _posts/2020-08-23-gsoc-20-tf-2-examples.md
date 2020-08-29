@@ -25,7 +25,7 @@ The [Kubeflow community](https://www.kubeflow.org/docs/about/community/) is a hi
 
 # The Project
 
-![]({{site.baseurl}}/images/2020-08-23-gsoc-20-tf-2-examples/kubeflow_components.png "Kubeflow Components")
+![](https://yashjakhotiya.github.io/blog/images/2020-08-23-gsoc-20-tf-2-examples/kubeflow_components.png "Kubeflow Components")
 
 Examples created as part of this project needed to be easily reproducible to serve their purpose. Initially the underlying model decided to demonstrate Kubeflow functionalities was a BiDirectional RNN to be trained on IMDB large movie review [dataset](http://ai.stanford.edu/%7Eamaas/data/sentiment/) for sentiment analysis based on a [tensorflow tutorial](https://www.tensorflow.org/tutorials/text/text_classification_rnn). Over the course of time, we decided to also add another set of examples using  a neural machine translation model in its backend trained on a Spanish to English [dataset](http://www.manythings.org/anki/) based on another [tensorflow tutorial](https://www.tensorflow.org/tutorials/text/nmt_with_attention).
 
