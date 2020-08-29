@@ -4,7 +4,7 @@ _Adapted from [fastai/nbdev/CONTRIBUTING.md](https://github.com/fastai/nbdev/blo
 
 First, thanks a lot for wanting to help! Some things to keep in mind:
 
-- The jupyter to blog post conversion functionality relies on [fastai/nbdev](https://github.com/fastai/nbdev).  For idiosyncratic uses of nbdev that only apply to blogs that would require a large refactor to nbdev, it might be acceptable to apply a [monkey patch](https://stackoverflow.com/questions/5626193/what-is-monkey-patching) in `fastpages`.  However, it is encouraged to contribute to `nbdev` where possible if there is a change that could unlock a new feature.  If you are unsure, please open an issue in this repo to discuss.
+- The jupyter to blog post conversion functionality relies on [fastai/nbdev](https://github.com/fastai/nbdev).  For idiosyncratic uses of nbdev that only apply to blog that would require a large refactor to nbdev, it might be acceptable to apply a [monkey patch](https://stackoverflow.com/questions/5626193/what-is-monkey-patching) in `fastpages`.  However, it is encouraged to contribute to `nbdev` where possible if there is a change that could unlock a new feature.  If you are unsure, please open an issue in this repo to discuss.
 
 
 ## Note for new contributors from Jeremy

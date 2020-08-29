@@ -4,10 +4,10 @@ title: About Me
 permalink: /about/
 ---
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
+# About Me
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+A software developer with interests in machine learning, open source and site-reliability engineering, I currently work with [D.E. Shaw](https://www.deshaw.com/), a New York based hedge fund.
 
+I have previously worked at the Indian Institute of Science, Bangalore as a deep learning summer research intern. My work was based on Generative Adversarial Networks and sequence-to-sequence modelling.
 
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+You can contact me on [Linkedin](https://www.linkedin.com/in/yash-jakhotiya/), [Twitter](https://twitter.com/yash_jakhotiya) or [Email](mailto:mailsforyashj@gmail.com). Or also take a look at my [résumé](https://drive.google.com/file/d/1z6vSBjbXRYaig0YSlwZVOlVRLgoSFk45/view?usp=sharing) or [GitHub](https://github.com/yashjakhotiya).

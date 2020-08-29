@@ -16,9 +16,9 @@ _powered by [fastpages](https://github.com/fastai/fastpages)_
 
 Great!  You have setup your repo.  Now its time to start writing content.  Some helpful links:
 
-- [Writing Blogs With Jupyter](https://github.com/fastai/fastpages#writing-blog-posts-with-jupyter)
+- [Writing blog With Jupyter](https://github.com/fastai/fastpages#writing-blog-posts-with-jupyter)
 
-- [Writing Blogs With Markdown](https://github.com/fastai/fastpages#writing-blog-posts-with-markdown)
+- [Writing blog With Markdown](https://github.com/fastai/fastpages#writing-blog-posts-with-markdown)
 
 - [Writing Blog Posts With Word](https://github.com/fastai/fastpages#writing-blog-posts-with-microsoft-word)
 
