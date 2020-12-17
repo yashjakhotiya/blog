@@ -18,7 +18,7 @@
   
       ,"page1": {
           "title": "About Me",
-          "content": "A software developer with interests in machine learning, open source and site-reliability engineering, I currently work at D.E. Shaw, a New York based hedge fund. . I have previously worked at the Indian Institute of Science, Bangalore as a deep learning summer research intern. My work there was based on Generative Adversarial Networks and sequence-to-sequence modelling. . You can contact me on Linkedin, Twitter or Email. Or take a look at my résumé or GitHub. .",
+          "content": "",
           "url": "https://yashjakhotiya.github.io/blog/about/",
           "relUrl": "/about/",
           "date": ""
