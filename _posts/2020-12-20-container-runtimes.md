@@ -6,7 +6,7 @@ toc: true
 comments: true
 hide: false
 search_exclude: false
-image: /images/<tbd, creately.com>
+image: /images/2020-12-20-container-runtimes/runc_in_docker.png
 categories: [containers, kubernetes]
 author: "<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
@@ -31,7 +31,7 @@ Providing fault tolerance and computer security with this form of **memory prote
 
 System calls serve as APIs for all **userland** software to interact with the kernel. In the Linux world, all distros (a bit simplification here) run the same kernel. This makes it possible for the _userland software coming from Ubuntu to talk to a CentOS kernel_.
 
-What you see inside a Dockerfile, which gets installed in the built image, is not a full-fledged OS. It is the trimmed-down version of the userland software of the OS, bare enough to talk to the host's kernel. It is not uncommon to see containers with Ubuntu, CentOS, and Debian base run parallely on a RHEL7 host.
+What you see inside a Dockerfile, which gets installed in the built image, is **not a full-fledged OS**. It is the trimmed-down version of the userland software of the OS, _bare enough to talk to the host's kernel_. It is not uncommon to see containers with Ubuntu, CentOS, and Debian base run parallely on a RHEL7 host.
 
 # Ok. I am curious. How is this implemented?
 
@@ -60,7 +60,7 @@ FROM ubuntu:18.04
 COPY script.py /app
 CMD python /app/script.py
 ```
-This container image contains the ubuntu:18.04 userland file structure heirarchy, /app/script.py and some environment configuration. Ignoring the config part for now, your minimal implementation can run this image in just 4 steps.
+This container image contains the ubuntu:18.04 userland file structure heirarchy, /app/script.py and some environment configuration. Ignoring the config part for now, **your minimal implementation can run this image in just 4 steps**.
 
 1. Export and extract contents of the image in `new_root_dir`
 ```
@@ -109,9 +109,9 @@ Humans aren't the only entities that interact with higher level runtimes. [Conta
 
 What interacts with high-level container runtimes are not client-facing modules of a running Kubernetes instance, **but a node-agent called** [kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/) which runs on all nodes in a Kubernetes cluster. **Kubelet** is responsible to ensure all containers mentioned in a pod's specification are running and healthy. It registers nodes, sends pod status and events, and reports resource utilization higher up the command chain.
 
-With the introduction of OCI, many container runtimes came up that supported running OCI-compliant container images, and **so arised the need for Kubernetes to support multiple runtimes**. To avoid deep integration of such runtimes into kubelet source code, and the subsequent maintenance that would follow, Kubernetes introduced the [Container Runtime Interface](https://github.com/kubernetes/cri-api) - an interface definition which enables kubelet to use a wide variety of runtimes. It is the responsibility of a container runtime to implement this interface as an internal package or as a **shim**.
+With the introduction of OCI, many container runtimes came up that supported running OCI-compliant container images, and **so arised the need for Kubernetes to support multiple runtimes**. To avoid deep integration of such runtimes into kubelet source code, and the subsequent maintenance that would follow, Kubernetes introduced the [Container Runtime Interface](https://github.com/kubernetes/cri-api) - _an interface definition which enables kubelet to use a wide variety of runtimes_. It is the responsibility of a container runtime to implement this interface as an internal package or as a **shim**.
 
-[containerd](https://github.com/containerd), a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate [cri-plugin](https://github.com/containerd/cri) codebase to its main [containerd/containerd](https://github.com/containerd/containerd) repository, **marking CRI-implementation to be an important part of the container runtime**. [cri-o](cri-o.io) is another implementation of CRI, **focused and optimized only for Kubernetes**, and, unlike containerd, can not service docker daemons for container orchestration.
+[containerd](https://github.com/containerd), a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate [cri-plugin](https://github.com/containerd/cri) codebase to its main [containerd/containerd](https://github.com/containerd/containerd) repository, **marking CRI-implementation to be an important part of the container runtime**. [cri-o](cri-o.io) is another implementation of CRI, _focused and optimized only for Kubernetes_, and, unlike containerd, can not service docker daemons for container orchestration.
 
 ![](https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/crio_to_kernel.png "CRI-O to Kernel")
 
@@ -127,4 +127,4 @@ Docker, being built for human interaction, isn't really friendly for Kubernetes 
 
 # End Notes
 
-I hope you liked reading this blog post as much as I loved writing it. I'll soon update a **large** list of references which can be used for further reading. In the meanwhile, please feel free to follow me on [Twitter](https://twitter.com/yash_jakhotiya) and subscribe to the Blog's [RSS Feed](https://yashjakhotiya.github.io/blog/feed.xml) for further updates. For any feedback or suggestions for blog posts, please drop an [email](mailto:mailsforyashj@gmail.com) or DM on Twitter. Thanks for reading!
+I hope you liked reading this blog post as much as I loved writing it. I'll soon update a _large_ list of references which can be used for further reading. In the meanwhile, please feel free to follow me on [Twitter](https://twitter.com/yash_jakhotiya) and subscribe to the Blog's [RSS Feed](https://yashjakhotiya.github.io/blog/feed.xml) for further updates. For any **feedback or suggestions for blog posts**, please drop an [email](mailto:mailsforyashj@gmail.com) or DM on Twitter. Thanks for reading!
