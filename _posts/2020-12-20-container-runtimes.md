@@ -101,29 +101,29 @@ Yes, they very much do! If you ever used Docker, you might know that running con
 
 ![](https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/container_runtimes.png "A higher level runtime interacting with a lower level runtime")
 
-Higher level runtimes are also responsible for **unpacking** the container image into an [OCI runtime bundle](https://github.com/opencontainers/runtime-spec/blob/master/bundle.md) before spawning a runc process to run it. In addition to managing the lifecycle of a container, higher level runtimes are also sometimes responsible for low level storage and network namespace management. This is usually in place to facilitate interaction between individual container processes. 
+Higher level runtimes are also responsible for **unpacking** the container image into an [OCI runtime bundle](https://github.com/opencontainers/runtime-spec/blob/master/bundle.md) before spawning a runc process to run it. In addition to managing the lifecycle of a container, higher level runtimes are also sometimes responsible for low level storage and network namespace management. **This is usually in place to facilitate interaction between individual container processes**. 
 
 Humans aren't the only entities that interact with higher level runtimes. [Container orchestration](https://www.redhat.com/en/topics/containers/what-is-container-orchestration) services (_just a fancy term for management and configuration of containers across large dynamic systems_), like [Kubernetes](https://kubernetes.io), need to interact with high-level runtimes. For most industry use-cases, it's less humans and more such services that talk to these runtimes.
 
 # Did you mention Kubernetes? You had my curiosity. Now you have my attention.
 
-What interacts with high-level container runtimes are not client-facing modules of a running Kubernetes instance, but a node-agent called [kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/) which runs on all nodes in a Kubernetes cluster. **Kubelet** is responsible to ensure all containers mentioned in a pod's specification are running and healthy. It registers nodes, sends pod status and events, and reports resource utilization higher up the command chain.
+What interacts with high-level container runtimes are not client-facing modules of a running Kubernetes instance, **but a node-agent called** [kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/) which runs on all nodes in a Kubernetes cluster. **Kubelet** is responsible to ensure all containers mentioned in a pod's specification are running and healthy. It registers nodes, sends pod status and events, and reports resource utilization higher up the command chain.
 
-With the introduction of OCI, many container runtimes came up that supported running OCI-compliant container images, and so arised the _need for Kubernetes to support multiple runtimes_. To avoid deep integration of such runtimes into kubelet source code, and the subsequent maintenance that would follow, Kubernetes introduced the [Container Runtime Interface](https://github.com/kubernetes/cri-api) - an interface definition which enables kubelet to use a wide variety of runtimes. It is the responsibility of a container runtime to implement this interface as an internal package or as a **shim**.
+With the introduction of OCI, many container runtimes came up that supported running OCI-compliant container images, and **so arised the need for Kubernetes to support multiple runtimes**. To avoid deep integration of such runtimes into kubelet source code, and the subsequent maintenance that would follow, Kubernetes introduced the [Container Runtime Interface](https://github.com/kubernetes/cri-api) - an interface definition which enables kubelet to use a wide variety of runtimes. It is the responsibility of a container runtime to implement this interface as an internal package or as a **shim**.
 
-[containerd](https://github.com/containerd), a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate [cri-plugin](https://github.com/containerd/cri) codebase to its main [containerd/containerd](https://github.com/containerd/containerd) repository, _marking CRI-implementation to be an important part of the container runtime_. [cri-o](cri-o.io) is another implementation of CRI, _focused and optimized only for Kubernetes_, and, unlike containerd, can not service docker daemons for container orchestration.
+[containerd](https://github.com/containerd), a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate [cri-plugin](https://github.com/containerd/cri) codebase to its main [containerd/containerd](https://github.com/containerd/containerd) repository, **marking CRI-implementation to be an important part of the container runtime**. [cri-o](cri-o.io) is another implementation of CRI, **focused and optimized only for Kubernetes**, and, unlike containerd, can not service docker daemons for container orchestration.
 
-![](https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/crio-to-kernel.png "CRI-O to Kernel")
+![](https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/crio_to_kernel.png "CRI-O to Kernel")
 
-Now that we have established CRI, let us talk about what the recent ** Kubernetes Docker Deprecation** really means.
+Now that we have established CRI, let us talk about what the recent **Kubernetes Docker Deprecation** really means.
 
 # Finally!
 
 Kuberenetes recently announced that it would be [deprecating Docker](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation). It really isn't as dramatic as it sounds. What Kuberenetes will not support is **Docker as a runtime**, and nothing else changes. Images built with dockerfiles are OCI-compliant and hence can be very well used with Kubernetes. Both containerd and cri-o know how to pull them, and runc knows how to run them.
 
-Docker, being built for human interaction, isn't really friendly for Kubernetes as just a runtime. To interact with it, Kubernetes has to develop a module called **dockershim**, which implements CRI support for Docker. This makes Docker call-able by kubelet as a runtime. Kubernetes is no longer willing to maintain this, especially when containerd (which Docker internally uses) has a CRI plugin. If you are developer, you do not really need to worry about what runtimes kubelet can interact with. _Docker built images are perfectly fine for Kubernetes to consume!_
+Docker, being built for human interaction, isn't really friendly for Kubernetes as just a runtime. To interact with it, Kubernetes has to develop a module called **dockershim**, which implements CRI support for Docker. This makes Docker call-able by kubelet as a runtime. Kubernetes is no longer willing to maintain this, especially when containerd (which Docker internally uses) has a CRI plugin. If you are developer, you do not really need to worry about what runtimes kubelet can interact with. **Docker built images are perfectly fine for Kubernetes to consume!**
 
-![](https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/dockershim-containerd.png "Dockershim deprecation")
+![](https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/dockershim_containerd.png "Dockershim deprecation")
 
 # End Notes
 
