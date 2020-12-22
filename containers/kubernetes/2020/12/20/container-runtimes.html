@@ -18,7 +18,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-12-20T00:00:00-06:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"description":"Kubelet to Kernel Space, and Everything in Between","@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","dateModified":"2020-12-20T00:00:00-06:00","datePublished":"2020-12-20T00:00:00-06:00","image":"https://yashjakhotiya.github.io/blog/images/%3Ctbd,%20creately.com%3E","@context":"https://schema.org"}</script>
+{"dateModified":"2020-12-20T00:00:00-06:00","author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"image":"https://yashjakhotiya.github.io/blog/images/%3Ctbd,%20creately.com%3E","description":"Kubelet to Kernel Space, and Everything in Between","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","datePublished":"2020-12-20T00:00:00-06:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yashjakhotiya.github.io/blog/feed.xml" title="Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -45,7 +45,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-12-20T00:00:00-06:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"description":"Kubelet to Kernel Space, and Everything in Between","@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","dateModified":"2020-12-20T00:00:00-06:00","datePublished":"2020-12-20T00:00:00-06:00","image":"https://yashjakhotiya.github.io/blog/images/%3Ctbd,%20creately.com%3E","@context":"https://schema.org"}</script>
+{"dateModified":"2020-12-20T00:00:00-06:00","author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"image":"https://yashjakhotiya.github.io/blog/images/%3Ctbd,%20creately.com%3E","description":"Kubelet to Kernel Space, and Everything in Between","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","datePublished":"2020-12-20T00:00:00-06:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -148,24 +148,24 @@ window.onload = wrap_img;
 </ul><h1 id="containers-arent-they--like-some-sort-of-virtual-machines">
 <a class="anchor" href="#containers-arent-they--like-some-sort-of-virtual-machines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Containers? Aren’t they … like some sort of virtual machines?</h1>
 
-<p>Docker popularized the notion of using containers - isolated environments leveraging OS-level virtualization where each running process sees the environment as one whole computer. This seems awfully similar to virtual machines, except that it isn’t. Containers differ from virtual machines in that each container does not host the entire operating system the way virtual machines do.</p>
+<p>Docker popularized the notion of using containers - <em>isolated environments leveraging OS-level virtualization</em> where each running process sees the environment as one whole computer. This seems awfully similar to virtual machines, except that it isn’t. Containers differ from virtual machines in that each container does not host the entire operating system the way virtual machines do.</p>
 
 <p><img src="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/containers_vs_vms.png" alt="" title="Virtual Machines Vs Containers"></p>
 
-<p>Container images, which become running containers when instantiated, store the application code and any required dependencies mentioned in the image <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile</a>. When you don’t need to worry about dependencies, shipping applications from a developer’s laptop to production servers or public cloud environments becomes easier. You <em>could</em> package your application as a custom built VM image relying on a fully functional traditional OS packaged with it, but container images are much more lightweight and can be easily maintained.</p>
+<p><strong>Container images</strong>, which become running containers when instantiated, store the application code and any required dependencies mentioned in the image <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile</a>. When you don’t need to worry about dependencies, shipping applications from a developer’s laptop to production servers or public cloud environments becomes easier. You <em>could</em> package your application as a custom built VM image relying on a fully functional traditional OS packaged with it, but container images are much more lightweight and can be easily maintained.</p>
 
 <h1 id="but-every-dockerfile-i-see-ultimately-stems-from-an-os-image-doesnt-that-mean-container-images-have-their-own-os-installed">
 <a class="anchor" href="#but-every-dockerfile-i-see-ultimately-stems-from-an-os-image-doesnt-that-mean-container-images-have-their-own-os-installed" aria-hidden="true"><span class="octicon octicon-link"></span></a>But, every dockerfile I see ultimately stems from an OS image. Doesn’t that mean container images have their own OS installed?</h1>
 
 <p>This is an excellent question. Thanks for asking! To answer this, let us get some background context.</p>
 
-<p>In most modern OS, an application process runs in what is known as a ‘user mode’. The idea here is to restrict the memory area accessible to an application process and prevent it from accessing and potentially corrupting memory areas associated with kernel and other application processes. This is implemented using <a href="https://en.wikipedia.org/wiki/Virtual_memory">Virtual memory</a> and <a href="https://en.wikipedia.org/wiki/Protection_ring">Protection Rings</a>, and assisted by hardware in the form of <a href="en.wikipedia.org/wiki/Protected_mode">Protected mode</a> and <a href="https://en.wikipedia.org/wiki/Memory_management_unit">Memory Management Units</a>.</p>
+<p>In most modern OS, an application process runs in what is known as a <strong>user mode</strong>. The idea here is to restrict the memory area accessible to an application process and prevent it from accessing and potentially corrupting memory areas associated with kernel and other application processes. This is implemented using <a href="https://en.wikipedia.org/wiki/Virtual_memory">Virtual memory</a> and <a href="https://en.wikipedia.org/wiki/Protection_ring">Protection Rings</a>, and assisted by hardware in the form of <a href="en.wikipedia.org/wiki/Protected_mode">Protected mode</a> and <a href="https://en.wikipedia.org/wiki/Memory_management_unit">Memory Management Units</a>.</p>
 
-<p>Providing fault tolerance and computer security with this form of memory protection effectively results in a typical OS being divided into two bifurcations - a user space and a kernel space. An application running in user space can access resources which it does not have direct access to (like I/O devices or files lying on a disk) with special requests to the kernel called <a href="https://man7.org/linux/man-pages/man2/syscalls.2.html">system calls</a>.</p>
+<p>Providing fault tolerance and computer security with this form of <strong>memory protection</strong> effectively results in a typical OS being divided into two bifurcations - a user space and a kernel space. An application running in user space can access resources which it does not have direct access to (like I/O devices or files lying on a disk) with special requests to the kernel called <a href="https://man7.org/linux/man-pages/man2/syscalls.2.html">system calls</a>.</p>
 
 <p><img src="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/user_space_kernel_space.png" alt="" title="A process in user space makes a system call"></p>
 
-<p>System calls serve as APIs for all ‘userland’ software to interact with the kernel. In the Linux world, all distros run (a bit simplification here) the same kernel. This makes it possible for the userland software coming from Ubuntu to talk to a CentOS kernel.</p>
+<p>System calls serve as APIs for all <strong>userland</strong> software to interact with the kernel. In the Linux world, all distros (a bit simplification here) run the same kernel. This makes it possible for the <em>userland software coming from Ubuntu to talk to a CentOS kernel</em>.</p>
 
 <p>What you see inside a Dockerfile, which gets installed in the built image, is not a full-fledged OS. It is the trimmed-down version of the userland software of the OS, bare enough to talk to the host’s kernel. It is not uncommon to see containers with Ubuntu, CentOS, and Debian base run parallely on a RHEL7 host.</p>
 
@@ -176,29 +176,26 @@ window.onload = wrap_img;
 
 <ol>
   <li>
-    <p>cgroups, or Control Groups is a Linux kernel feature. With cgroups you can allocate, monitor, and limit resources - like CPU time, memory, or network bandwidth - to a process or a collection of processes. Linux command <a href="https://linux.die.net/man/1/cgcreate">cgcreate</a> helps you create a control group, <a href="https://linux.die.net/man/1/cgset">cgset</a> sets resource limits for the control group, and with <a href="https://linux.die.net/man/1/cgexec">cgexec</a> you can run a command in the control group.</p>
+    <p><strong>cgroups</strong>, or Control Groups is a Linux kernel feature. With cgroups you can <em>allocate, monitor, and limit resources</em> - like CPU time, memory, or network bandwidth - to a process or a collection of processes. Linux command <a href="https://linux.die.net/man/1/cgcreate">cgcreate</a> helps you create a control group, <a href="https://linux.die.net/man/1/cgset">cgset</a> sets resource limits for the control group, and with <a href="https://linux.die.net/man/1/cgexec">cgexec</a> you can run a command in the control group.</p>
   </li>
-  <li>
-    <p>A namespace is another Linux kernel feature, with which you can isolate a global <em>resource</em>. This creates an illusion of a separate instance of the resource to the processes running in the namespace, and any changes made are not visible outside! The resources you can abstract this way include process IDs, hostnames, user IDs, etc. <a href="https://man7.org/linux/man-pages/man1/unshare.1.html">unshare</a> [options] [<em>program</em> [arguments]] is a Linux utility you can use to create namespaces (supplied in <code class="highlighter-rouge">options</code>) and run <code class="highlighter-rouge">program</code> in it. For example you can create a UTS (Unix Time Sharing) namespace, which controls host and domain names, using the -u option as illustrated below.</p>
-  </li>
-</ol>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; hostname                              # show current hostname 
-personal-ubuntu                                                                                                     &gt; unshare -u /bin/sh                    # run a shell instance with UTS namespace unshared from parent
+  <li>A <strong>namespace</strong> is another Linux kernel feature, with which you can <em>isolate a global resource</em>. This creates an illusion of a separate instance of the resource to the processes running in the namespace, and any changes made are <strong>not visible outside</strong>! The resources you can abstract this way include process IDs, hostnames, user IDs, etc. <a href="https://man7.org/linux/man-pages/man1/unshare.1.html">unshare</a> [options] [<em>program</em> [arguments]] is a Linux utility you can use to create namespaces (supplied in <code class="highlighter-rouge">options</code>) and run <code class="highlighter-rouge">program</code> in it. For example you can create a UTS (Unix Time Sharing) namespace, which controls host and domain names, using the -u option as illustrated below.
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>&gt; hostname                              # show current hostname 
+personal-ubuntu
+&gt; unshare -u /bin/sh                    # run a shell instance with UTS namespace unshared from parent
 &gt; hostname a-different-hostname         # change hostname to a-different-hostname
 &gt; hostname                              # verify that the hostname has been changed
 a-different-hostname
 &gt; exit                                  # exit from the shell process, effectively destroying the namespace
 &gt; hostname                              # voila!
 personal-ubuntu                         # changing the hostname inside the namespace has no effect outside!
-</code></pre></div></div>
-
-<ol>
+</code></pre></div>    </div>
+  </li>
   <li>
-<a href="https://linux.die.net/man/1/chroot">chroot</a> is a Linux utility that can change the apparent root directory for a process and its children. Running <code class="highlighter-rouge">chroot NEWROOT command</code> will run <code class="highlighter-rouge">command</code> with <code class="highlighter-rouge">NEWROOT</code> as its apparent root directory. This modified environment is also called a ‘chroot jail’, because <code class="highlighter-rouge">command</code> can not name and hence can not normally access files outside <code class="highlighter-rouge">NEWROOT</code>.</li>
+<a href="https://linux.die.net/man/1/chroot">chroot</a> is a Linux utility that can <em>change the apparent root directory for a process and its children</em>. Running <code class="highlighter-rouge">chroot NEWROOT command</code> will run <code class="highlighter-rouge">command</code> with <code class="highlighter-rouge">NEWROOT</code> as its apparent root directory. This modified environment is also called a <strong>chroot jail</strong>, because <code class="highlighter-rouge">command</code> can not name and hence can not normally access files outside <code class="highlighter-rouge">NEWROOT</code>.</li>
 </ol>
 
-<p>Now that you have understood these three main concepts, let us say we created a container image from the following dockerfile, exported it into a tar file which we want to run.</p>
+<p>Now that you have understood these three main concepts, let us create a container image from the following dockerfile, which we want to run.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:18.04
 COPY script.py /app
 CMD python /app/script.py
@@ -233,54 +230,54 @@ CMD python /app/script.py
   </li>
 </ol>
 
-<p>Lo and behold! You have just created a minimal container runtime!</p>
+<p><strong>Lo and behold!</strong> You have just created a minimal container runtime!</p>
 
 <h1 id="whoa-wait-container-r-what">
 <a class="anchor" href="#whoa-wait-container-r-what" aria-hidden="true"><span class="octicon octicon-link"></span></a>Whoa! Wait, Container R… what?</h1>
 
-<p>Container Runtime - the code and tooling responsible for running containers. What you created above is the heart of what every container runtime does. Although, it catches the essence of container runtimes, it’s still minimal. Docker images also have something known as a <code class="highlighter-rouge">config.json</code>. This file has, among other things, environment variables to be set for the running process inside the container, and the uid and gid of the user the process must run as.</p>
+<p><strong>Container Runtime</strong> - the code and tooling responsible for running containers. What you created above is the heart of what every container runtime does. Although, it catches the essence of container runtimes, it’s still minimal. Docker images also have something known as a <code class="highlighter-rouge">config.json</code>. This file has, among other things, environment variables to be set for the running process inside the container, and the uid and gid of the user the process must run as.</p>
 
-<p>The code to run containers used to be deep inside a monolith called <code class="highlighter-rouge">Docker</code>. But, it need not be. As long as vendors agreed upon a common specification for images and a common specification for runtimes, anybody could create runtimes customized to their needs. That’s exactly what they did. Docker, CoreOS, Google and other industry leaders in the container space came together and launched <a href="https://opencontainers.org">Open Container Initiative</a> in June 2015. OCI is responsible for defining <a href="https://github.com/opencontainers/image-spec">image-spec</a> and <a href="https://github.com/opencontainers/runtime-spec">runtime-spec</a>, which every OCI-compliant image builder and container runtime has to abide by.</p>
+<p>The code to run containers used to be deep inside a monolith called <code class="highlighter-rouge">Docker</code>. But, it need not be. As long as vendors agree upon a common specification for images and a common specification for runtimes, <em>anybody could create runtimes</em> customized to their needs. <strong>That’s exactly what they did</strong>. Docker, CoreOS, Google and other industry leaders in the container space came together and launched <a href="https://opencontainers.org">Open Container Initiative</a> in June 2015. OCI is responsible for defining <a href="https://github.com/opencontainers/image-spec">image-spec</a> and <a href="https://github.com/opencontainers/runtime-spec">runtime-spec</a>, which every OCI-compliant image builder and container runtime has to abide by.</p>
 
 <p>OCI even develops and maintains a reference implementation of the runtime-spec called <a href="https://github.com/opencontainers/runc">runc</a>. runc broke off from Docker, as part of the Open Container Initiative. Although, runc is self-sufficient to run containers, it is a low-level runtime. The only developers that work with runc are developers of high-level runtimes.</p>
 
 <h1 id="come-on-these-container-runtimes-have-levels-now">
 <a class="anchor" href="#come-on-these-container-runtimes-have-levels-now" aria-hidden="true"><span class="octicon octicon-link"></span></a>Come on! These container runtimes have ‘levels’ now?</h1>
 
-<p>Yes, they very much do. If you have ever used docker, you might know that running containers from images isn’t all that you do. You might want to pull images from registeries before you actually run them. A higher level runtime does that for you.</p>
+<p>Yes, they very much do! If you ever used Docker, you might know that running containers from images isn’t all that you do. You might want to <strong>pull images</strong> from registries before you actually run them. A higher level runtime does that for you.</p>
 
 <p><img src="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/container_runtimes.png" alt="" title="A higher level runtime interacting with a lower level runtime"></p>
 
-<p>Higher level runtimes are also responsible for unpacking the container image into an <a href="https://github.com/opencontainers/runtime-spec/blob/master/bundle.md">OCI runtime bundle</a> before spawning a runc process to run it. In addition to managing the lifecycle of a container, higher level runtimes are also sometimes responsible for low level storage and network namespace management. This is usually in place to facilitate interaction between individual container processes.</p>
+<p>Higher level runtimes are also responsible for <strong>unpacking</strong> the container image into an <a href="https://github.com/opencontainers/runtime-spec/blob/master/bundle.md">OCI runtime bundle</a> before spawning a runc process to run it. In addition to managing the lifecycle of a container, higher level runtimes are also sometimes responsible for low level storage and network namespace management. This is usually in place to facilitate interaction between individual container processes.</p>
 
-<p>Humans aren’t the only entities that interact with higher level runtimes. <a href="https://www.redhat.com/en/topics/containers/what-is-container-orchestration">Container orchestration</a> services (just a fancy term for management and configuration of containers across large dynamic systems), like <a href="https://kubernetes.io">Kubernetes</a>, need to interact with high-level runtimes. For most industry use-cases, it’s less humans and more such services that need to talk to higher level runtimes.</p>
+<p>Humans aren’t the only entities that interact with higher level runtimes. <a href="https://www.redhat.com/en/topics/containers/what-is-container-orchestration">Container orchestration</a> services (<em>just a fancy term for management and configuration of containers across large dynamic systems</em>), like <a href="https://kubernetes.io">Kubernetes</a>, need to interact with high-level runtimes. For most industry use-cases, it’s less humans and more such services that talk to these runtimes.</p>
 
 <h1 id="did-you-mention-kubernetes-you-had-my-curiosity-now-you-have-my-attention">
 <a class="anchor" href="#did-you-mention-kubernetes-you-had-my-curiosity-now-you-have-my-attention" aria-hidden="true"><span class="octicon octicon-link"></span></a>Did you mention Kubernetes? You had my curiosity. Now you have my attention.</h1>
 
-<p>What interacts with high-level container runtimes are not client-facing modules of a running Kubernetes instance, but a node-agent called <a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/">kubelet</a> which runs on all nodes in a Kubernetes cluster. Kubelet is responsible to ensure all containers mentioned in a pod’s specification are running and healthy. It registers nodes, sends pod status and events, and reports resource utilization higher up the command chain.</p>
+<p>What interacts with high-level container runtimes are not client-facing modules of a running Kubernetes instance, but a node-agent called <a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/">kubelet</a> which runs on all nodes in a Kubernetes cluster. <strong>Kubelet</strong> is responsible to ensure all containers mentioned in a pod’s specification are running and healthy. It registers nodes, sends pod status and events, and reports resource utilization higher up the command chain.</p>
 
-<p>With the introduction of OCI, many container runtimes came up that could support running OCI-compliant container images, and so arised the need for Kubernetes to support these runtimes. To avoid deep integration of such runtimes into kubelet source code, and the subsequent maintenance that would follow, Kubernetes introduced the <a href="https://github.com/kubernetes/cri-api">Container Runtime Interface</a> - an interface definition which enables kubelet to use a wide variety of runtimes. It is the responsibility of a container runtime to implement this interface as an internal package or as a shim.</p>
+<p>With the introduction of OCI, many container runtimes came up that supported running OCI-compliant container images, and so arised the <em>need for Kubernetes to support multiple runtimes</em>. To avoid deep integration of such runtimes into kubelet source code, and the subsequent maintenance that would follow, Kubernetes introduced the <a href="https://github.com/kubernetes/cri-api">Container Runtime Interface</a> - an interface definition which enables kubelet to use a wide variety of runtimes. It is the responsibility of a container runtime to implement this interface as an internal package or as a <strong>shim</strong>.</p>
 
-<p><a href="https://github.com/containerd">containerd</a>, a prominent high-level container runtime, which broke off from Docker similar to runc, recently graduated its <a href="https://github.com/containerd/cri">cri-shim</a> codebase to its main <a href="https://github.com/containerd/containerd">containerd/containerd</a> repository, marking CRI-implementation to be an important part of the container runtime. <a href="cri-o.io">cri-o</a> is another implementation of CRI, focused and optimized only for Kubernetes, and, unlike containerd, can not service docker daemons for container orchestration.</p>
+<p><a href="https://github.com/containerd">containerd</a>, a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate <a href="https://github.com/containerd/cri">cri-plugin</a> codebase to its main <a href="https://github.com/containerd/containerd">containerd/containerd</a> repository, <em>marking CRI-implementation to be an important part of the container runtime</em>. <a href="cri-o.io">cri-o</a> is another implementation of CRI, <em>focused and optimized only for Kubernetes</em>, and, unlike containerd, can not service docker daemons for container orchestration.</p>
 
 <p><img src="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/crio-to-kernel.png" alt="" title="CRI-O to Kernel"></p>
 
-<p>Now that we have established CRI, let us talk about what Kubernetes recent ‘Docker Deprecation’ really means.</p>
+<p>Now that we have established CRI, let us talk about what the recent ** Kubernetes Docker Deprecation** really means.</p>
 
 <h1 id="finally">
 <a class="anchor" href="#finally" aria-hidden="true"><span class="octicon octicon-link"></span></a>Finally!</h1>
 
-<p>Kuberenetes recently announced that it will be <a href="https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation">deprecating Docker</a>. It really isn’t as dramatic as it sounds. What Kuberenetes will not support is Docker as a <strong>runtime</strong>, and nothing else changes. Images built with dockerfiles are OCI-compliant and hence can be very well used with Kubernetes. Both containerd and cri-o know how to pull them, and runc knows how to run them.</p>
+<p>Kuberenetes recently announced that it would be <a href="https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation">deprecating Docker</a>. It really isn’t as dramatic as it sounds. What Kuberenetes will not support is <strong>Docker as a runtime</strong>, and nothing else changes. Images built with dockerfiles are OCI-compliant and hence can be very well used with Kubernetes. Both containerd and cri-o know how to pull them, and runc knows how to run them.</p>
 
-<p>Docker, being built for human interaction, isn’t really friendly for Kubernetes as just a runtime. To interact with it, Kubernetes has to develop a module called “dockershim”, which implements CRI support for Docker. This makes Docker callable by kubelet as a runtime. Kubernetes is no longer willing to maintain this, especially when containerd (which Docker internally uses) has a CRI plugin. If you are developer, you do not really need to worry about what runtimes kubelet can interact with. Docker built images are perfectly fine for Kubernetes to consume!</p>
+<p>Docker, being built for human interaction, isn’t really friendly for Kubernetes as just a runtime. To interact with it, Kubernetes has to develop a module called <strong>dockershim</strong>, which implements CRI support for Docker. This makes Docker call-able by kubelet as a runtime. Kubernetes is no longer willing to maintain this, especially when containerd (which Docker internally uses) has a CRI plugin. If you are developer, you do not really need to worry about what runtimes kubelet can interact with. <em>Docker built images are perfectly fine for Kubernetes to consume!</em></p>
 
 <p><img src="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/dockershim-containerd.png" alt="" title="Dockershim deprecation"></p>
 
 <h1 id="end-notes">
 <a class="anchor" href="#end-notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>End Notes</h1>
 
-<p>I hope you liked reading this blog post as much as I loved writing it. I’ll soon update a <em>large</em> list of references which you can use for further reading. In the meanwhile, please feel free to follow me on <a href="https://twitter.com/yash_jakhotiya">Twitter</a> and subscribe to the Blog’s <a href="https://yashjakhotiya.github.io/blog/feed.xml">RSS Feed</a> for further updates. For any feedback or suggestions for blog post, please drop me a DM on Twitter, or <a href="mailto:mailsforyashj@gmail.com">email</a> me. Thanks for reading!</p>
+<p>I hope you liked reading this blog post as much as I loved writing it. I’ll soon update a <strong>large</strong> list of references which can be used for further reading. In the meanwhile, please feel free to follow me on <a href="https://twitter.com/yash_jakhotiya">Twitter</a> and subscribe to the Blog’s <a href="https://yashjakhotiya.github.io/blog/feed.xml">RSS Feed</a> for further updates. For any feedback or suggestions for blog posts, please drop an <a href="mailto:mailsforyashj@gmail.com">email</a> or DM on Twitter. Thanks for reading!</p>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
