@@ -14,11 +14,11 @@
 <link rel="canonical" href="https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html" />
 <meta property="og:url" content="https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html" />
 <meta property="og:site_name" content="Blog" />
-<meta property="og:image" content="https://yashjakhotiya.github.io/blog/images/%3Ctbd,%20creately.com%3E" />
+<meta property="og:image" content="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/runc_in_docker.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-12-20T00:00:00-06:00" />
 <script type="application/ld+json">
-{"dateModified":"2020-12-20T00:00:00-06:00","author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"image":"https://yashjakhotiya.github.io/blog/images/%3Ctbd,%20creately.com%3E","description":"Kubelet to Kernel Space, and Everything in Between","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","datePublished":"2020-12-20T00:00:00-06:00","@context":"https://schema.org"}</script>
+{"dateModified":"2020-12-20T00:00:00-06:00","author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"image":"https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/runc_in_docker.png","description":"Kubelet to Kernel Space, and Everything in Between","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","datePublished":"2020-12-20T00:00:00-06:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yashjakhotiya.github.io/blog/feed.xml" title="Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -41,11 +41,11 @@
 <link rel="canonical" href="https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html" />
 <meta property="og:url" content="https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html" />
 <meta property="og:site_name" content="Blog" />
-<meta property="og:image" content="https://yashjakhotiya.github.io/blog/images/%3Ctbd,%20creately.com%3E" />
+<meta property="og:image" content="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/runc_in_docker.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-12-20T00:00:00-06:00" />
 <script type="application/ld+json">
-{"dateModified":"2020-12-20T00:00:00-06:00","author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"image":"https://yashjakhotiya.github.io/blog/images/%3Ctbd,%20creately.com%3E","description":"Kubelet to Kernel Space, and Everything in Between","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","datePublished":"2020-12-20T00:00:00-06:00","@context":"https://schema.org"}</script>
+{"dateModified":"2020-12-20T00:00:00-06:00","author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"image":"https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/runc_in_docker.png","description":"Kubelet to Kernel Space, and Everything in Between","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","datePublished":"2020-12-20T00:00:00-06:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -167,7 +167,7 @@ window.onload = wrap_img;
 
 <p>System calls serve as APIs for all <strong>userland</strong> software to interact with the kernel. In the Linux world, all distros (a bit simplification here) run the same kernel. This makes it possible for the <em>userland software coming from Ubuntu to talk to a CentOS kernel</em>.</p>
 
-<p>What you see inside a Dockerfile, which gets installed in the built image, is not a full-fledged OS. It is the trimmed-down version of the userland software of the OS, bare enough to talk to the host’s kernel. It is not uncommon to see containers with Ubuntu, CentOS, and Debian base run parallely on a RHEL7 host.</p>
+<p>What you see inside a Dockerfile, which gets installed in the built image, is <strong>not a full-fledged OS</strong>. It is the trimmed-down version of the userland software of the OS, <em>bare enough to talk to the host’s kernel</em>. It is not uncommon to see containers with Ubuntu, CentOS, and Debian base run parallely on a RHEL7 host.</p>
 
 <h1 id="ok-i-am-curious-how-is-this-implemented">
 <a class="anchor" href="#ok-i-am-curious-how-is-this-implemented" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ok. I am curious. How is this implemented?</h1>
@@ -200,7 +200,7 @@ personal-ubuntu                         # changing the hostname inside the names
 COPY script.py /app
 CMD python /app/script.py
 </code></pre></div></div>
-<p>This container image contains the ubuntu:18.04 userland file structure heirarchy, /app/script.py and some environment configuration. Ignoring the config part for now, your minimal implementation can run this image in just 4 steps.</p>
+<p>This container image contains the ubuntu:18.04 userland file structure heirarchy, /app/script.py and some environment configuration. Ignoring the config part for now, <strong>your minimal implementation can run this image in just 4 steps</strong>.</p>
 
 <ol>
   <li>Export and extract contents of the image in <code class="highlighter-rouge">new_root_dir</code>
@@ -257,9 +257,9 @@ CMD python /app/script.py
 
 <p>What interacts with high-level container runtimes are not client-facing modules of a running Kubernetes instance, <strong>but a node-agent called</strong> <a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/">kubelet</a> which runs on all nodes in a Kubernetes cluster. <strong>Kubelet</strong> is responsible to ensure all containers mentioned in a pod’s specification are running and healthy. It registers nodes, sends pod status and events, and reports resource utilization higher up the command chain.</p>
 
-<p>With the introduction of OCI, many container runtimes came up that supported running OCI-compliant container images, and <strong>so arised the need for Kubernetes to support multiple runtimes</strong>. To avoid deep integration of such runtimes into kubelet source code, and the subsequent maintenance that would follow, Kubernetes introduced the <a href="https://github.com/kubernetes/cri-api">Container Runtime Interface</a> - an interface definition which enables kubelet to use a wide variety of runtimes. It is the responsibility of a container runtime to implement this interface as an internal package or as a <strong>shim</strong>.</p>
+<p>With the introduction of OCI, many container runtimes came up that supported running OCI-compliant container images, and <strong>so arised the need for Kubernetes to support multiple runtimes</strong>. To avoid deep integration of such runtimes into kubelet source code, and the subsequent maintenance that would follow, Kubernetes introduced the <a href="https://github.com/kubernetes/cri-api">Container Runtime Interface</a> - <em>an interface definition which enables kubelet to use a wide variety of runtimes</em>. It is the responsibility of a container runtime to implement this interface as an internal package or as a <strong>shim</strong>.</p>
 
-<p><a href="https://github.com/containerd">containerd</a>, a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate <a href="https://github.com/containerd/cri">cri-plugin</a> codebase to its main <a href="https://github.com/containerd/containerd">containerd/containerd</a> repository, <strong>marking CRI-implementation to be an important part of the container runtime</strong>. <a href="cri-o.io">cri-o</a> is another implementation of CRI, <strong>focused and optimized only for Kubernetes</strong>, and, unlike containerd, can not service docker daemons for container orchestration.</p>
+<p><a href="https://github.com/containerd">containerd</a>, a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate <a href="https://github.com/containerd/cri">cri-plugin</a> codebase to its main <a href="https://github.com/containerd/containerd">containerd/containerd</a> repository, <strong>marking CRI-implementation to be an important part of the container runtime</strong>. <a href="cri-o.io">cri-o</a> is another implementation of CRI, <em>focused and optimized only for Kubernetes</em>, and, unlike containerd, can not service docker daemons for container orchestration.</p>
 
 <p><img src="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/crio_to_kernel.png" alt="" title="CRI-O to Kernel"></p>
 
@@ -277,7 +277,7 @@ CMD python /app/script.py
 <h1 id="end-notes">
 <a class="anchor" href="#end-notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>End Notes</h1>
 
-<p>I hope you liked reading this blog post as much as I loved writing it. I’ll soon update a <strong>large</strong> list of references which can be used for further reading. In the meanwhile, please feel free to follow me on <a href="https://twitter.com/yash_jakhotiya">Twitter</a> and subscribe to the Blog’s <a href="https://yashjakhotiya.github.io/blog/feed.xml">RSS Feed</a> for further updates. For any feedback or suggestions for blog posts, please drop an <a href="mailto:mailsforyashj@gmail.com">email</a> or DM on Twitter. Thanks for reading!</p>
+<p>I hope you liked reading this blog post as much as I loved writing it. I’ll soon update a <em>large</em> list of references which can be used for further reading. In the meanwhile, please feel free to follow me on <a href="https://twitter.com/yash_jakhotiya">Twitter</a> and subscribe to the Blog’s <a href="https://yashjakhotiya.github.io/blog/feed.xml">RSS Feed</a> for further updates. For any <strong>feedback or suggestions for blog posts</strong>, please drop an <a href="mailto:mailsforyashj@gmail.com">email</a> or DM on Twitter. Thanks for reading!</p>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
