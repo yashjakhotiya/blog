@@ -18,7 +18,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-12-20T00:00:00-06:00" />
 <script type="application/ld+json">
-{"dateModified":"2020-12-20T00:00:00-06:00","author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"image":"https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/runc_in_docker.png","description":"Kubelet to Kernel Space, and Everything in Between","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","datePublished":"2020-12-20T00:00:00-06:00","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"description":"Kubelet to Kernel Space, and Everything in Between","@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","dateModified":"2020-12-20T00:00:00-06:00","datePublished":"2020-12-20T00:00:00-06:00","image":"https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/runc_in_docker.png","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yashjakhotiya.github.io/blog/feed.xml" title="Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -45,7 +45,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-12-20T00:00:00-06:00" />
 <script type="application/ld+json">
-{"dateModified":"2020-12-20T00:00:00-06:00","author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"image":"https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/runc_in_docker.png","description":"Kubelet to Kernel Space, and Everything in Between","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","datePublished":"2020-12-20T00:00:00-06:00","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html"},"description":"Kubelet to Kernel Space, and Everything in Between","@type":"BlogPosting","url":"https://yashjakhotiya.github.io/blog/containers/kubernetes/2020/12/20/container-runtimes.html","headline":"Containers, Container Runtimes, and What Kubernetes ‘Docker’ Deprecation Really Means","dateModified":"2020-12-20T00:00:00-06:00","datePublished":"2020-12-20T00:00:00-06:00","image":"https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/runc_in_docker.png","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -261,7 +261,7 @@ CMD python /app/script.py
 
 <p><a href="https://github.com/containerd">containerd</a>, a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate <a href="https://github.com/containerd/cri">cri-plugin</a> codebase to its main <a href="https://github.com/containerd/containerd">containerd/containerd</a> repository, <strong>marking CRI-implementation to be an important part of the container runtime</strong>. <a href="cri-o.io">cri-o</a> is another implementation of CRI, <em>focused and optimized only for Kubernetes</em>, and, unlike containerd, can not service docker daemons for container orchestration.</p>
 
-<p><img src="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/crio_to_kernel.png" alt="" title="CRI-O to Kernel"></p>
+<p><img src="https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/kubelet_to_kernel.png" alt="" title="Kubelet to Kernel"></p>
 
 <p>Now that we have established CRI, let us talk about what the recent <strong>Kubernetes Docker Deprecation</strong> really means.</p>
 
