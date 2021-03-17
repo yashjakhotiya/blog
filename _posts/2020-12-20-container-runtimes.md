@@ -113,7 +113,7 @@ With the introduction of OCI, many container runtimes came up that supported run
 
 [containerd](https://github.com/containerd), a prominent high-level container runtime, which broke off from Docker similar to runc, recently merged its separate [cri-plugin](https://github.com/containerd/cri) codebase to its main [containerd/containerd](https://github.com/containerd/containerd) repository, **marking CRI-implementation to be an important part of the container runtime**. [cri-o](cri-o.io) is another implementation of CRI, _focused and optimized only for Kubernetes_, and, unlike containerd, can not service docker daemons for container orchestration.
 
-![](https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/crio_to_kernel.png "CRI-O to Kernel")
+![](https://yashjakhotiya.github.io/blog/images/2020-12-20-container-runtimes/kubelet_to_kernel.png "Kubelet to Kernel")
 
 Now that we have established CRI, let us talk about what the recent **Kubernetes Docker Deprecation** really means.
 
