@@ -1,6 +1,6 @@
 ---
-title: "Can we avoid duplication by identifying questions with similar intent?"
-description: "Identifying similar questions can help avoid duplication of efforts"
+title: "Can we avoid repeated questions by identifying similar intent?"
+description: "Inhibiting repeated questions can help avoid duplication of efforts"
 layout: post
 toc: true
 comments: true
@@ -8,7 +8,7 @@ hide: false
 search_exclude: false
 image: /images/quora-logo.png
 categories: [nlp]
-author: "<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
+author: "<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/ajish-sekar/'>Ajish Sekar</a>, <a href='https://www.linkedin.com/in/naveen-1999/'>Naveen Narayanan</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
 
 # Introduction/Background :
