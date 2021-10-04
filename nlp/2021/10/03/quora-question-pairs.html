@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Can we avoid duplication by identifying questions with similar intent? | Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Can we avoid duplication by identifying questions with similar intent?" />
+<meta name="author" content="<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Identifying similar questions can help avoid duplication of efforts" />
+<meta property="og:description" content="Identifying similar questions can help avoid duplication of efforts" />
+<link rel="canonical" href="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html" />
+<meta property="og:url" content="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html" />
+<meta property="og:site_name" content="Blog" />
+<meta property="og:image" content="https://yashjakhotiya.github.io/blog/images/quora-logo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-03T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"description":"Identifying similar questions can help avoid duplication of efforts","@type":"BlogPosting","headline":"Can we avoid duplication by identifying questions with similar intent?","dateModified":"2021-10-03T00:00:00-05:00","datePublished":"2021-10-03T00:00:00-05:00","url":"https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html"},"image":"https://yashjakhotiya.github.io/blog/images/quora-logo.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yashjakhotiya.github.io/blog/feed.xml" title="Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-176702229-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+<link rel="manifest" href="/blog/images/site.webmanifest">
+<link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Can we avoid duplication by identifying questions with similar intent? | Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Can we avoid duplication by identifying questions with similar intent?" />
+<meta name="author" content="<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Identifying similar questions can help avoid duplication of efforts" />
+<meta property="og:description" content="Identifying similar questions can help avoid duplication of efforts" />
+<link rel="canonical" href="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html" />
+<meta property="og:url" content="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html" />
+<meta property="og:site_name" content="Blog" />
+<meta property="og:image" content="https://yashjakhotiya.github.io/blog/images/quora-logo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-03T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"},"description":"Identifying similar questions can help avoid duplication of efforts","@type":"BlogPosting","headline":"Can we avoid duplication by identifying questions with similar intent?","dateModified":"2021-10-03T00:00:00-05:00","datePublished":"2021-10-03T00:00:00-05:00","url":"https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html"},"image":"https://yashjakhotiya.github.io/blog/images/quora-logo.png","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://yashjakhotiya.github.io/blog/feed.xml" title="Blog" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-176702229-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<script src="https://hypothes.is/embed.js" async></script>
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Can we avoid duplication by identifying questions with similar intent?</h1><p class="page-description">Identifying similar questions can help avoid duplication of efforts</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-03T00:00:00-05:00" itemprop="datePublished">
+        Oct 3, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name"><a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a></span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#nlp">nlp</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <script data-ad-client="ca-pub-7392888799974730" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#introductionbackground-">Introduction/Background :</a></li>
+<li class="toc-entry toc-h1"><a href="#problem-definition-">Problem Definition :</a></li>
+<li class="toc-entry toc-h1"><a href="#methods">Methods:</a></li>
+<li class="toc-entry toc-h1"><a href="#potential-results-and-discussions">Potential Results and Discussions:</a></li>
+<li class="toc-entry toc-h1"><a href="#proposed-timeline-and-responsibilities-">Proposed Timeline and Responsibilities :</a></li>
+<li class="toc-entry toc-h1"><a href="#references-">References :</a></li>
+</ul><h1 id="introductionbackground-">
+<a class="anchor" href="#introductionbackground-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction/Background :</h1>
+
+<p>With public discussion forums becoming highly popular in recent times, websites like Edstem, Piazza, Stack Overflow and Quora have a constant influx of a large volume of questions. Multiple questions with the same intent leads to redundancy, and waste of time, space and resources.</p>
+
+<h1 id="problem-definition-">
+<a class="anchor" href="#problem-definition-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem Definition :</h1>
+
+<p>The aim is to identify and flag questions with a high similarity index, and retain only canonical questions in order to make the work of administrative staff such as TAs/Professors easier in terms of answering repeated questions or questions of the same intent.</p>
+
+<h1 id="methods">
+<a class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods:</h1>
+
+<ol>
+  <li>
+    <p>Dataset:
+The dataset that we will be using is the Quora Question
+Pairs dataset<sup>[1]</sup>. It consists of 404,290 pairs of questions.
+Each datapoint consists of a pairof questions and whether
+or not they are similar.</p>
+  </li>
+  <li>Data preprocessing:
+    <ul>
+      <li>One augmentation method we plan to leverage is the transitive property of similarity and create more question pairs. Assuming a question is represented as 𝑄<sub>𝑖</sub>. If 𝑄<sub>1</sub> - 𝑄<sub>2</sub> are similar and 𝑄<sub>2</sub> - 𝑄<sub>3</sub> are similar, then 𝑄<sub>1</sub> - 𝑄<sub>3</sub> will also be similar.</li>
+      <li>Other preprocessing techniques we intend to use are,
+        <ol>
+          <li>Noise Removal</li>
+          <li>Removing stopwords and punctuation</li>
+          <li>Tokenization</li>
+          <li>Lemmatization and stemming</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>Training:
+    <ul>
+      <li>For each training iteration, we input questions in a pairwise fashion - 𝑄<sub>𝑖</sub>, 𝑄<sub>𝑗</sub>.</li>
+      <li>The model learns representations of building blocks of both sentences𝑄<sub>𝑖</sub>−&gt;ν<sub>𝑖</sub>, 𝑄<sub>𝑗</sub>−&gt;ν<sub>𝑗</sub>.</li>
+      <li>Next, these representations are concatenated 𝑣<sub>𝑐𝑜𝑛</sub> = 𝑐𝑜𝑛𝑐𝑎𝑡(ν<sub>𝑖</sub>, ν<sub>𝑗</sub>), and passed on to a feedforward neural network or a machine learning model 𝐹 (𝑣𝑐𝑜𝑛) that predicts whether two questions are similar or not.</li>
+      <li>∀ questions 𝑄<sub>𝑖</sub> ε question bank 𝑄<sub>𝐵</sub>, we group them into clusters 𝑐<sub><em>1</em></sub>,…,𝑐<sub><em>n</em></sub> for efficient inference.</li>
+    </ul>
+  </li>
+  <li>Inference:
+    <ul>
+      <li>For a query question 𝑄<sub>𝑞</sub> we identify the cluster 𝑐<sub>𝑖</sub> it belongs to.</li>
+      <li>For all candidate questions 𝑄<sub>𝑑</sub> belonging to cluster 𝑐<sub>𝑖</sub>, we find similarity 𝑠𝑖𝑚(𝑄<sub>𝑑</sub>, 𝑄<sub>𝑞</sub>). With clustering we avoid finding similarities with all questions in the question bank, making inference efficient.</li>
+      <li>If for any 𝑄<sub>𝑑</sub> ε 𝑐<sub>𝑖</sub>, if 𝑠𝑖𝑚(𝑄<sub>𝑑</sub>, 𝑄<sub>𝑞</sub>) &gt; 𝑡ℎ𝑟𝑒𝑠ℎ𝑜𝑙𝑑, we flag that question as similar.</li>
+      <li>We also output 𝑡𝑜𝑝 − 𝑘 similar questions based on 𝑠𝑖𝑚(𝑄<sub>𝑑</sub>, 𝑄<sub>𝑞</sub>).</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://yashjakhotiya.github.io/blog/images/2021-10-03-quora-question-pairs/flow_chart.png" alt="" title="Model in action"></p>
+
+<ol>
+  <li>Models in consideration:
+    <ul>
+      <li>Potential models for learning representations
+        <ul>
+          <li>BERT-like models (RoBERTa, ALBERT, DeBERTa)</li>
+          <li>GPT models</li>
+          <li>XLNet</li>
+        </ul>
+      </li>
+      <li>Potential models for clustering
+        <ul>
+          <li>K-means</li>
+          <li>DBSCAN</li>
+          <li>GMM</li>
+        </ul>
+      </li>
+      <li>Potential models for finding similarity
+        <ul>
+          <li>Feedforward neural network</li>
+          <li>Gradient boosted trees</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="potential-results-and-discussions">
+<a class="anchor" href="#potential-results-and-discussions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Potential Results and Discussions:</h1>
+<p>We aim to confidently identify a representative question for a
+query question input by a user, and further list the <strong><em>top-k</em></strong> most
+relevant questions.</p>
+
+<p>We also hope to gain insight by clustering similar questions and
+analyze the reason for their similarity, which may help in
+downstream tasks such as automatic question tagging, and
+personalized recommendation of questions basedon the field of
+interest.</p>
+
+<h1 id="proposed-timeline-and-responsibilities-">
+<a class="anchor" href="#proposed-timeline-and-responsibilities-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proposed Timeline and Responsibilities :</h1>
+<p>| Task | Timeline | 
+| —–| ——– |
+| Data preprocessing (Naveen), Exploratory Data Analysis (Abhijith), Explore possible architecture (Pranav, Yash, Ajish) | Week 1, Week 2 |
+Training Word Embeddings (Yash, Ajish, Pranav), Model for similarity (Naveen, Abhijith) | Week 3, Week 4
+Clustering Models (Pranav, Naveen), Analysing Results (Abhijith, Ajish, Yash) | Week 5, Week 6
+Comparing and fine tuning models, preparing final report (Ajish, Yash, Pranav, Abhijith, Naveen) | Week 7, Week 8</p>
+
+<h1 id="references-">
+<a class="anchor" href="#references-" aria-hidden="true"><span class="octicon octicon-link"></span></a>References :</h1>
+<ol>
+  <li>https://quoradata.quora.com/First-Quora-Dataset-Release-Question-Pairs</li>
+  <li>D. A. Prabowo and G. Budi Herwanto, “Duplicate Question Detection in Question Answer Website using Convolutional Neural Network,” 2019 5th International Conference on Science and Technology (ICST), 2019, pp. 1-6, doi: 10.1109/ICST47872.2019.9166343.</li>
+  <li>Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina
+Toutanova, “BERT: Pre-training of Deep Bidirectional
+Transformers for Language Understanding”, arXiv:1810.</li>
+  <li>Tianqi Chen andCarlos Guestrin.2016.XGBoost: A Scalable Tree Boosting System. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD ‘16). Association for Computing Machinery, New York,NY,USA,785–794.DOI:https://doi.org/10.1145/2939672.785.</li>
+  <li>Reynolds D.(2009)GaussianMixture Models.In:Li S.Z.,Jain A. (eds) Encyclopedia of Biometrics. Springer, Boston, MA. https://doi.org/10.1007/978-0-387-73003-5_</li>
+</ol>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yashjakhotiya/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/nlp/2021/10/03/quora-question-pairs.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Blog</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/yashjakhotiya" title="yashjakhotiya"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/yash-jakhotiya" title="yash-jakhotiya"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/yash_jakhotiya" title="yash_jakhotiya"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
