@@ -13,7 +13,7 @@ author: "<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a
 
 # Introduction/Background :
 
-With public discussion forums becoming highly popular in recent times, websites like Edstem, Piazza, Stack Overflow and Quora have a constant influx of a large volume of questions. Multiple questions with the same intent leads to redundancy, and waste of time, space and resources.
+With public discussion forums becoming highly popular in recent times, especially with classes and work moving to an online setup, websites like Edstem, Piazza, Stack Overflow and Quora have a constant influx of a large volume of questions. Multiple questions with the same intent leads to redundancy, and waste of time, space and resources.
 
 # Problem Definition :
 
