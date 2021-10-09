@@ -3,9 +3,9 @@
     
         "post0": {
             "title": "Can you, like, REALLY explain me this?",
-            "content": "There are times when you need to look back to a concept or a topic and reassure yourself that you really really understand it. This is a list of resources that helps me do that. . Linear Algebra : . Change of basis . | Eigenvectors and Eigenvalues . | Statistical ML . Probability, MLE, EM . Multiple random variables probability review . | Generative modeling, Latent variables, GMMs, MLE, EM . | Naive Bayes, Logistic - Sigmoid, Softmax . MLE, Naive Bayes, Logistic . | Logistic, Softmax, Cross-entropy, Logistic connection to a single neuron via sigmoid . | Neural Network Foundational . Space Transformation . Neural Networks, Manifolds, and Topology | Backpropagation . What is backpropagation really doing? . | Backpropagation calculus . |",
-            "url": "https://yashjakhotiya.github.io/blog/nlp/2021/10/09/List-of-resources.html",
-            "relUrl": "/nlp/2021/10/09/List-of-resources.html",
+            "content": "There are times when you need to look back to a concept or a topic and reassure yourself that you really really understand it. This is a list of resources that helps me do that. . Linear Algebra : . Change of basis . | Eigenvectors and Eigenvalues . | Statistical ML . Probability, MLE, EM . Multiple random variables probability review . | Generative modeling, Latent variables, GMMs, MLE, EM . | Naive Bayes, Logistic - Sigmoid, Softmax . MLE, Naive Bayes, Logistic . | Logistic, Softmax, Cross-entropy, Logistic connection to a single neuron via sigmoid . | Neural Network Foundational . Space Transformation . Neural Networks, Manifolds, and Topology | Backpropagation . What is backpropagation really doing? . | Backpropagation calculus . | Backprop with practical considerations . |",
+            "url": "https://yashjakhotiya.github.io/blog/resources/2021/10/09/List-of-resources.html",
+            "relUrl": "/resources/2021/10/09/List-of-resources.html",
             "date": " • Oct 9, 2021"
         }
         
