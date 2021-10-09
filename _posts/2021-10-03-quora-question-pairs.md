@@ -8,7 +8,7 @@ hide: false
 search_exclude: false
 image: /images/quora-logo.png
 categories: [nlp]
-author: "<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/ajish-sekar/'>Ajish Sekar</a>, <a href='https://www.linkedin.com/in/naveen-1999/'>Naveen Narayanan</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
+author: "<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Ragav</a>, <a href='https://www.linkedin.com/in/ajish-sekar/'>Ajish Sekar</a>, <a href='https://www.linkedin.com/in/naveen-1999/'>Naveen Narayanan</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
 
 # Introduction/Background :
