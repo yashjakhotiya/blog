@@ -7,8 +7,8 @@ comments: true
 hide: false
 search_exclude: false
 image: /images/quora-logo.png
-categories: [nlp]
-author: "<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Raghav</a>, <a href='https://www.linkedin.com/in/ajish-sekar/'>Ajish Sekar</a>, <a href='https://www.linkedin.com/in/naveen-1999/'>Naveen Narayanan</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
+categories: [resources]
+author: "<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
 
 There are times when you need to look back to a concept or a topic and reassure yourself that you _really_ _really_ understand it. This is a list of resources that helps me do that.
@@ -40,3 +40,5 @@ There are times when you need to look back to a concept or a topic and reassure 
 1. [What is backpropagation really doing?](https://www.youtube.com/watch?v=Ilg3gGewQ5U)
 
 2. [Backpropagation calculus](https://www.youtube.com/watch?v=tIeHLnjs5U8)
+
+3. [Backprop with practical considerations](https://www.youtube.com/watch?v=yLYHDSv-288)
