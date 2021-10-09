@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://yashjakhotiya.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yashjakhotiya.github.io/blog/" rel="alternate" type="text/html" /><updated>2021-10-09T13:26:23-05:00</updated><id>https://yashjakhotiya.github.io/blog/feed.xml</id><title type="html">Blog</title><subtitle>Blog</subtitle><entry><title type="html">Can we avoid repeated questions by identifying similar intent?</title><link href="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html" rel="alternate" type="text/html" title="Can we avoid repeated questions by identifying similar intent?" /><published>2021-10-03T00:00:00-05:00</published><updated>2021-10-03T00:00:00-05:00</updated><id>https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs</id><content type="html" xml:base="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html">&lt;h1 id=&quot;introductionbackground-&quot;&gt;Introduction/Background :&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://yashjakhotiya.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yashjakhotiya.github.io/blog/" rel="alternate" type="text/html" /><updated>2021-10-09T14:08:33-05:00</updated><id>https://yashjakhotiya.github.io/blog/feed.xml</id><title type="html">Blog</title><subtitle>Blog</subtitle><entry><title type="html">Can you, like, REALLY explain me this?</title><link href="https://yashjakhotiya.github.io/blog/nlp/2021/10/09/List-of-resources.html" rel="alternate" type="text/html" title="Can you, like, REALLY explain me this?" /><published>2021-10-09T00:00:00-05:00</published><updated>2021-10-09T00:00:00-05:00</updated><id>https://yashjakhotiya.github.io/blog/nlp/2021/10/09/List-of-resources</id><content type="html" xml:base="https://yashjakhotiya.github.io/blog/nlp/2021/10/09/List-of-resources.html">&lt;p&gt;There are times when you need to look back to a concept or a topic and reassure yourself that you &lt;em&gt;really&lt;/em&gt; &lt;em&gt;really&lt;/em&gt; understand it. This is a list of resources that helps me do that.&lt;/p&gt;
+
+&lt;h1 id=&quot;linear-algebra-&quot;&gt;Linear Algebra :&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=P2LTAUO1TdA&quot;&gt;Change of basis&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=PFDu9oVAE-g&quot;&gt;Eigenvectors and Eigenvalues&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;statistical-ml&quot;&gt;Statistical ML&lt;/h1&gt;
+
+&lt;h2 id=&quot;probability-mle-em&quot;&gt;Probability, MLE, EM&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://courses.engr.illinois.edu/cs440/sp2011/slides/lecture15.pdf&quot;&gt;Multiple random variables probability review&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://mahdi-roozbahani.github.io/CS46417641-fall2021/course/09-gaussian-mixture-note.pdf&quot;&gt;Generative modeling, Latent variables, GMMs, MLE, EM&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;naive-bayes-logistic---sigmoid-softmax&quot;&gt;Naive Bayes, Logistic - Sigmoid, Softmax&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://cocoxu.github.io/CS7650_fall2021/slides/lec2-ml.pdf&quot;&gt;MLE, Naive Bayes, Logistic&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;www.youtube.com/watch?v=8CWyBNX6eDo&quot;&gt;Logistic, Softmax, Cross-entropy, Logistic connection to a single neuron via sigmoid&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;neural-network-foundational&quot;&gt;Neural Network Foundational&lt;/h1&gt;
+
+&lt;h2 id=&quot;space-transformation&quot;&gt;Space Transformation&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/&quot;&gt;Neural Networks, Manifolds, and Topology&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;backpropagation&quot;&gt;Backpropagation&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Ilg3gGewQ5U&quot;&gt;What is backpropagation really doing?&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=tIeHLnjs5U8&quot;&gt;Backpropagation calculus&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>&lt;a href='https://www.linkedin.com/in/abhijithragav/'&gt;Abhijith Raghav&lt;/a&gt;, &lt;a href='https://www.linkedin.com/in/ajish-sekar/'&gt;Ajish Sekar&lt;/a&gt;, &lt;a href='https://www.linkedin.com/in/naveen-1999/'&gt;Naveen Narayanan&lt;/a&gt;, &lt;a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'&gt;Pranav Guruprasad&lt;/a&gt;, &lt;a href='https://www.linkedin.com/in/yash-jakhotiya/'&gt;Yash Jakhotiya&lt;/a&gt;</name></author><summary type="html">There are times when you need to look back to a concept or a topic and reassure yourself that you really really understand it. This is a list of resources that helps me do that.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://yashjakhotiya.github.io/blog/images/quora-logo.png" /><media:content medium="image" url="https://yashjakhotiya.github.io/blog/images/quora-logo.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Can we avoid repeated questions by identifying similar intent?</title><link href="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html" rel="alternate" type="text/html" title="Can we avoid repeated questions by identifying similar intent?" /><published>2021-10-03T00:00:00-05:00</published><updated>2021-10-03T00:00:00-05:00</updated><id>https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs</id><content type="html" xml:base="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html">&lt;h1 id=&quot;introductionbackground-&quot;&gt;Introduction/Background :&lt;/h1&gt;
 
 &lt;p&gt;With public discussion forums becoming highly popular in recent times, especially with classes and work moving to an online setup, websites like Edstem, Piazza, Stack Overflow and Quora have a constant influx of a large volume of questions. Multiple questions with the same intent leads to redundancy, and waste of time, space and resources.&lt;/p&gt;
 
