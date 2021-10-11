@@ -6,10 +6,12 @@ toc: true
 comments: true
 hide: false
 search_exclude: false
-image: /images/quora-logo.png
+image: /images/2021-10-03-quora-question-pairs/quora-logo.png
 categories: [nlp]
 author: "<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Ragav</a>, <a href='https://www.linkedin.com/in/ajish-sekar/'>Ajish Sekar</a>, <a href='https://www.linkedin.com/in/naveen-1999/'>Naveen Narayanan</a>, <a href='https://www.linkedin.com/in/pranav-guruprasad-82697514a/'>Pranav Guruprasad</a>, <a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
+
+_Course project for [CS 7641](https://mahdi-roozbahani.github.io/CS46417641-fall2021/)_
 
 # Introduction/Background :
 

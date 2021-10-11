@@ -6,12 +6,12 @@ toc: true
 comments: true
 hide: false
 search_exclude: false
-image: /images/quora-logo.png
+image: /images/list-of-resources/linked-tori.png
 categories: [resources]
 author: "<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
 
-There are times when you need to look back to a concept or a topic and reassure yourself that you _really_ _really_ understand it. This is a list of resources that helps me do that.
+There are times when you need to look back to something and reassure yourself that you _really_ _really_ understand it. This is a dynamic work-in-progress list of resources that has, potentially in a distant past, helped me do that.
 
 # Linear Algebra :
 
