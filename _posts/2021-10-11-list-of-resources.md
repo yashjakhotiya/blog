@@ -13,7 +13,7 @@ author: "<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a
 
 There are times when you need to look back to something and reassure yourself that you _really_ _really_ understand it. This is a dynamic work-in-progress list of resources that has, potentially in a distant past, helped me do that.
 
-# Linear Algebra :
+# Linear Algebra
 
 1. [Change of basis](https://www.youtube.com/watch?v=P2LTAUO1TdA)
 
