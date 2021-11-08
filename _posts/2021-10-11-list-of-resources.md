@@ -19,6 +19,8 @@ There are times when you need to look back to something and reassure yourself th
 
 2. [Eigenvectors and Eigenvalues](https://www.youtube.com/watch?v=PFDu9oVAE-g)
 
+3. [Matrix Ranks, Invertibility, SVD, Pseudoinverse](https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html)
+
 # Statistical ML
 
 ## Probability, MLE, EM
