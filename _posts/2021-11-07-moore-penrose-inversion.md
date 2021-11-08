@@ -13,9 +13,9 @@ author: "<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a
 In this post, let's go all the way back to something as "basic" as linear regression and it's closed form solution through least squares method and try to unearth a couple of linear algebra gems.
 
 # When explicit formulation failed
-In an ML class, we were told to find out weights to a linear regression problem through least squares method, before we went to gradient descent. My first instinct was to use the formulation - 
+In an ML class, we were told to find out weights to a linear regression problem through least squares method, before we went to gradient descent. My first instinct was to use the formulation (derivation in the [slides](https://mahdi-roozbahani.github.io/CS46417641-fall2021/course/15-linear-regression-note.pdf)) - 
 
-$$(X^TX)^{-1}X^T$$
+$$\theta = (X^TX)^{-1}X^TY$$
 
 But I didn't pass our autograder tests.
 
@@ -55,7 +55,7 @@ where $Σ^+$ is obtained by taking the reciprocal of each non-zero element on th
 
 and finding theta by 
 
-$$\theta = X^+y = VΣ^+U^Ty$$
+$$\theta = X^+Y = VΣ^+U^TY$$
 
 The proof on why this theta gives the minimum norm solution is given [here](http://web.cs.ucla.edu/~chohsieh/teaching/CS260_Winter2019/notes_linearregression.pdf).
 
