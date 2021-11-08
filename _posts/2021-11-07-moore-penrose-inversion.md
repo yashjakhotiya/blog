@@ -1,12 +1,12 @@
 ---
 title: "pinv >>> inv"
-description: "A flow on matrix ranks, invertibility, singular value decomposition, Moore-Penrose inversion and Least Squares Method"
+description: "A flow on matrix ranks, invertibility, singular value decomposition, Moore-Penrose inverse and the least squares method"
 layout: post
 toc: true
 comments: true
 hide: false
 search_exclude: false
-image: /images/2020-12-20-container-runtimes/runc_in_docker.png
+image: /images/moore-penrose.png
 categories: [linear algebra]
 author: "<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
