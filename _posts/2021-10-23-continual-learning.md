@@ -1,13 +1,13 @@
 ---
-title: "Containers, Container Runtimes, and What Kubernetes 'Docker' Deprecation Really Means"
-description: "Kubelet to Kernel Space, and Everything in Between"
+title: "On Continual Learning"
+description: "This is work in progress"
 layout: post
 toc: true
 comments: true
 hide: false
 search_exclude: false
 image: /images/2020-12-20-container-runtimes/runc_in_docker.png
-categories: [containers, kubernetes]
+categories: [continual learning, lifelong learning]
 author: "<a href='https://www.linkedin.com/in/yash-jakhotiya/'>Yash Jakhotiya</a>"
 ---
 

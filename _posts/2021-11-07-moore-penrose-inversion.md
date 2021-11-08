@@ -1,5 +1,5 @@
 ---
-title: "`pinv` >>> inv"
+title: "pinv >>> inv"
 description: "A flow on matrix ranks, invertibility, singular value decomposition, Moore-Penrose inversion and Least Squares Method"
 layout: post
 toc: true
