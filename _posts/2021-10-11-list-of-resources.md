@@ -44,3 +44,6 @@ There are times when you need to look back to something and reassure yourself th
 2. [Backpropagation calculus](https://www.youtube.com/watch?v=tIeHLnjs5U8)
 
 3. [Backprop with practical considerations](https://www.youtube.com/watch?v=yLYHDSv-288)
+
+# Natural Language Processing
+1. [Seq2Seq problems - need for Attention, Attention, NMT, BPE](https://cocoxu.github.io/CS7650_fall2021/slides/lec11-seq2seq.pdf)
