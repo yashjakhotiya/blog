@@ -46,4 +46,11 @@ There are times when you need to look back to something and reassure yourself th
 3. [Backprop with practical considerations](https://www.youtube.com/watch?v=yLYHDSv-288)
 
 # Natural Language Processing
-1. [Seq2Seq problems - need for Attention, Attention, NMT, BPE](https://cocoxu.github.io/CS7650_fall2021/slides/lec11-seq2seq.pdf)
+
+## Non Contextual Word Embeddings
+1. [Word2Vec CBOW and Skip-Gram](https://cocoxu.github.io/CS7650_fall2021/slides/lec7-nn2.pdf)
+
+2. [GloVe training objective](https://paperswithcode.com/method/glove)
+
+## Attention
+1. [Seq2Seq problems - need for Attention, Attention, NMT, BPE, WordPieces](https://cocoxu.github.io/CS7650_fall2021/slides/lec11-seq2seq.pdf)
