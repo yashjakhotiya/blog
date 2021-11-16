@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://yashjakhotiya.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yashjakhotiya.github.io/blog/" rel="alternate" type="text/html" /><updated>2021-11-14T16:24:48-06:00</updated><id>https://yashjakhotiya.github.io/blog/feed.xml</id><title type="html">Blog</title><subtitle>Blog</subtitle><entry><title type="html">pinv »&amp;gt; inv</title><link href="https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html" rel="alternate" type="text/html" title="pinv &gt;&gt;&gt; inv" /><published>2021-11-07T00:00:00-05:00</published><updated>2021-11-07T00:00:00-05:00</updated><id>https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion</id><content type="html" xml:base="https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html">&lt;p&gt;In this post, let’s go all the way back to something as “basic” as linear regression and it’s closed form solution through least squares method and try to unearth a couple of linear algebra gems.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://yashjakhotiya.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yashjakhotiya.github.io/blog/" rel="alternate" type="text/html" /><updated>2021-11-16T17:28:13-06:00</updated><id>https://yashjakhotiya.github.io/blog/feed.xml</id><title type="html">Blog</title><subtitle>Blog</subtitle><entry><title type="html">pinv »&amp;gt; inv</title><link href="https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html" rel="alternate" type="text/html" title="pinv &gt;&gt;&gt; inv" /><published>2021-11-07T00:00:00-05:00</published><updated>2021-11-07T00:00:00-05:00</updated><id>https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion</id><content type="html" xml:base="https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html">&lt;p&gt;In this post, let’s go all the way back to something as “basic” as linear regression and it’s closed form solution through least squares method and try to unearth a couple of linear algebra gems.&lt;/p&gt;
 
 &lt;h1 id=&quot;when-explicit-formulation-failed&quot;&gt;When explicit formulation failed&lt;/h1&gt;
 &lt;p&gt;In an ML class, we were told to find out weights to a linear regression problem through least squares method, before we went to gradient descent. My first instinct was to use the formulation (derivation in the &lt;a href=&quot;https://mahdi-roozbahani.github.io/CS46417641-fall2021/course/15-linear-regression-note.pdf&quot;&gt;slides&lt;/a&gt;) -&lt;/p&gt;
@@ -223,20 +223,63 @@ Elsevier.&lt;/p&gt;</content><author><name>&lt;a href='https://www.linkedin.com/
 &lt;h1 id=&quot;methods&quot;&gt;Methods:&lt;/h1&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Dataset: The dataset that we will be using is the Quora Question Pairs dataset&lt;sup&gt;[1]&lt;/sup&gt;. It consists of 404,290 pairs of questions. Each datapoint consists of a pairof questions and whether
-or not they are similar.&lt;/p&gt;
+  &lt;li&gt;Dataset: The dataset that we will be using is the Quora Question Pairs dataset&lt;sup&gt;[1]&lt;/sup&gt;. It consists of 404,290 pairs of questions. Each datapoint consists of a pairof questions and whether
+or not they are similar.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/22400185/141877000-0663d2d9-2a99-4f59-b7ee-1cd367323457.png&quot; alt=&quot;WordCloud&quot; /&gt;
+&lt;em&gt;Fig 1: Word Cloud depicting which words appear more frequently in the dataset&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/22400185/141876903-478cd635-ae3a-45c8-a491-7f71b0c14011.jpeg&quot; alt=&quot;Histogram of character count&quot; /&gt;
+&lt;em&gt;Fig 2: Histogram representing the number of characters in each question&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/22400185/141876911-18ff1378-cb7a-411c-b82b-f13c571eddd2.jpeg&quot; alt=&quot;Histogram of word count&quot; /&gt;
+&lt;em&gt;Fig 3: Histogram representing the number of words in each question&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/22400185/141876917-4d315806-63bb-4a46-a7a4-c55c6acff8ac.jpeg&quot; alt=&quot;Word share&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Fig 4: Plots representing the distribution of ratio of words shared between similar and dissimlar question&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Data Augmentation:
+    &lt;ul&gt;
+      &lt;li&gt;We exploit the transitive property of similarity to generate new datapoints.
+        &lt;ul&gt;
+          &lt;li&gt;If Question Q&lt;sub&gt;1&lt;/sub&gt; is similar to Question Q&lt;sub&gt;2&lt;/sub&gt; and Question Q&lt;sub&gt;2&lt;/sub&gt; is similar to Question Q&lt;sub&gt;3&lt;/sub&gt;, then we can infer that Q&lt;sub&gt;1&lt;/sub&gt; is similar to Q&lt;sub&gt;3&lt;/sub&gt;&lt;/li&gt;
+          &lt;li&gt;If Question Q&lt;sub&gt;1&lt;/sub&gt; is similar to Question Q&lt;sub&gt;2&lt;/sub&gt; and Question Q&lt;sub&gt;2&lt;/sub&gt; is not similar to Question Q&lt;sub&gt;3&lt;/sub&gt;, then we can infer that Q&lt;sub&gt;1&lt;/sub&gt; is not similar to Q&lt;sub&gt;3&lt;/sub&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;Through this method, we generated 25% more training datapoints.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;Data preprocessing:
     &lt;ul&gt;
-      &lt;li&gt;One augmentation method we plan to leverage is the transitive property of similarity and create more question pairs. Assuming a question is represented as 𝑄&lt;sub&gt;𝑖&lt;/sub&gt;. If 𝑄&lt;sub&gt;1&lt;/sub&gt; - 𝑄&lt;sub&gt;2&lt;/sub&gt; are similar and 𝑄&lt;sub&gt;2&lt;/sub&gt; - 𝑄&lt;sub&gt;3&lt;/sub&gt; are similar, then 𝑄&lt;sub&gt;1&lt;/sub&gt; - 𝑄&lt;sub&gt;3&lt;/sub&gt; will also be similar.&lt;/li&gt;
-      &lt;li&gt;Other preprocessing techniques we intend to use are,
-        &lt;ol&gt;
-          &lt;li&gt;Noise Removal&lt;/li&gt;
-          &lt;li&gt;Removing stopwords and punctuation&lt;/li&gt;
-          &lt;li&gt;Tokenization&lt;/li&gt;
-          &lt;li&gt;Lemmatization and stemming&lt;/li&gt;
-        &lt;/ol&gt;
+      &lt;li&gt;We used the following preprocessing techniques:
+        &lt;ul&gt;
+          &lt;li&gt;Sample Sentence: “How can internet speed be increased by hacking through DNS?”
+            &lt;ol&gt;
+              &lt;li&gt;Removing punctuation&lt;/li&gt;
+            &lt;/ol&gt;
+            &lt;ul&gt;
+              &lt;li&gt;After Punctuation Removal: “How can internet speed be increased by hacking through DNS”
+          2. Converting characters to Lower Case&lt;/li&gt;
+              &lt;li&gt;After conversion: “how can internet speed be increased by hacking through dns”
+          3. Tokenization&lt;/li&gt;
+              &lt;li&gt;Tokenization is the process of converting the sentence into a list of it’s constituent words/phrases. It helps reduce the input to a finite set, making it easier to process.&lt;/li&gt;
+              &lt;li&gt;After Tokenization: [‘how’, ‘can’, ‘internet’, ‘speed’, ‘be’, ‘increased’, ‘by’, ‘hacking’, ‘through’, ‘dns’]
+          4. Stop Word Removal&lt;/li&gt;
+              &lt;li&gt;The idea of Stop Word Removal is to remove commonly occuring words in the corpus.&lt;/li&gt;
+              &lt;li&gt;After Stop Word Removal: [‘internet’, ‘speed’, ‘increased’, ‘hacking’, ‘dns’]
+          5. POS Tagging&lt;/li&gt;
+              &lt;li&gt;POS tagging refers to categorizing words in a corpus corresponding to a particular part of speech (eg: Noun, Verb, Adjective etc). This process helps improve the performance of the Lemmatizer.&lt;/li&gt;
+              &lt;li&gt;After POS Tagging: [(‘internet’, ‘a’), (‘speed’, ‘n’), (‘increased’, ‘v’), (‘hacking’, ‘v’), (‘dns’, ‘n’)]
+          6. Lemmatization&lt;/li&gt;
+              &lt;li&gt;Lemmatization is grouping together different inflected forms of a word so that they can be analyzed as a single item.&lt;/li&gt;
+              &lt;li&gt;After Lemmatization: [‘internet’, ‘speed’, ‘increase’, ‘hack’, ‘dns’]&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
@@ -247,6 +290,19 @@ or not they are similar.&lt;/p&gt;
       &lt;li&gt;Next, these representations are concatenated 𝑣&lt;sub&gt;𝑐𝑜𝑛&lt;/sub&gt; = 𝑐𝑜𝑛𝑐𝑎𝑡(ν&lt;sub&gt;𝑖&lt;/sub&gt;, ν&lt;sub&gt;𝑗&lt;/sub&gt;), and passed on to a feedforward neural network or a machine learning model 𝐹 (𝑣𝑐𝑜𝑛) that predicts whether two questions are similar or not.&lt;/li&gt;
       &lt;li&gt;∀ questions 𝑄&lt;sub&gt;𝑖&lt;/sub&gt; ε question bank 𝑄&lt;sub&gt;𝐵&lt;/sub&gt;, we group them into clusters 𝑐&lt;sub&gt;&lt;em&gt;1&lt;/em&gt;&lt;/sub&gt;,…,𝑐&lt;sub&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sub&gt; for efficient inference.&lt;/li&gt;
     &lt;/ul&gt;
+
+    &lt;p&gt;&lt;strong&gt;Supervised method: Classifying sentences as similar or not using  BERT-based model (Added for midpoint report)&lt;/strong&gt;&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;The tokenized version of the candidate sentence that we get from the preprocessing stage is first passed to a pre-trained BERT model.&lt;/li&gt;
+      &lt;li&gt;The output of this pre-trained BERT model is the sentence-level embedding of the tokenized version - E&lt;sub&gt;1.&lt;/sub&gt;&lt;/li&gt;
+      &lt;li&gt;The same process is done on the second candidate sentence to retrieve its sentence-level embedding - E&lt;sub&gt;2.&lt;/sub&gt;&lt;/li&gt;
+      &lt;li&gt;The two embeddings are concatenated, and then passed to a feed-forward neural network which consists of a fully connected layer, a ReLu layer, another fully       connected layer, and finally a softmax layer in the order specified.&lt;/li&gt;
+      &lt;li&gt;The softmax layer then outputs the probabilities of the pair of candidate questions being similar. Based on the probabilities we classify the questions as         similar or not similar.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/39705529/141838152-b27025fc-becc-47b6-a20f-f6c7bb41e548.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;em&gt;Fig 5: BERT takes in sentences as inputs and gives sentence-level embeddings as the output&lt;/em&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;Inference:
     &lt;ul&gt;
@@ -274,7 +330,7 @@ or not they are similar.&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;Potential models for finding similarity
         &lt;ul&gt;
-          &lt;li&gt;Feedforward neural network&lt;/li&gt;
+          &lt;li&gt;Feedforward neural network (FFN)&lt;/li&gt;
           &lt;li&gt;Gradient boosted trees&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
@@ -289,11 +345,237 @@ or not they are similar.&lt;/p&gt;
 query question input by a user, and further list the &lt;strong&gt;&lt;em&gt;top-k&lt;/em&gt;&lt;/strong&gt; most
 relevant questions.&lt;/p&gt;
 
-&lt;p&gt;We also hope to gain insight by clustering similar questions and
+&lt;h1 id=&quot;midpoint-results-and-analysis&quot;&gt;Midpoint results and analysis&lt;/h1&gt;
+
+&lt;p&gt;For this checkpoint, we completed the supervised aspect of our project and implemented a BERT-based model to classify pairs of questions as “similar” or “not similar”. We conducted thorough experiments and ablation studies to find the optimal model, hyperparameters and data preprocessing &amp;amp; augmentation techniques that gives us the best results.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Experiment 1 : Data preprocessing and augmentation choices&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Through the first set of experiments, we try to observe the effects of data preprocessing and data augmentation on the performance of the model. We also apply three different types of models on a sample dataset of 1000 data points from the entire original dataset. The results of these are seen in the tables below:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Data Preprocessing&lt;/th&gt;
+      &lt;th&gt;Data Augmentation&lt;/th&gt;
+      &lt;th&gt;Model&lt;/th&gt;
+      &lt;th&gt;Train accuracy&lt;/th&gt;
+      &lt;th&gt;Train F1 score&lt;/th&gt;
+      &lt;th&gt;Test accuracy&lt;/th&gt;
+      &lt;th&gt;Test F1 score&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;Baseline&lt;/td&gt;
+      &lt;td&gt;0.57&lt;/td&gt;
+      &lt;td&gt;0.61&lt;/td&gt;
+      &lt;td&gt;0.42&lt;/td&gt;
+      &lt;td&gt;0.58&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;Baseline&lt;/td&gt;
+      &lt;td&gt;0.61&lt;/td&gt;
+      &lt;td&gt;0.61&lt;/td&gt;
+      &lt;td&gt;0.57&lt;/td&gt;
+      &lt;td&gt;0.62&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Baseline&lt;/td&gt;
+      &lt;td&gt;0.6&lt;/td&gt;
+      &lt;td&gt;0.62&lt;/td&gt;
+      &lt;td&gt;0.61&lt;/td&gt;
+      &lt;td&gt;0.6&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Data Preprocessing&lt;/th&gt;
+      &lt;th&gt;Data Augmentation&lt;/th&gt;
+      &lt;th&gt;Model&lt;/th&gt;
+      &lt;th&gt;Train accuracy&lt;/th&gt;
+      &lt;th&gt;Train F1 score&lt;/th&gt;
+      &lt;th&gt;Test accuracy&lt;/th&gt;
+      &lt;th&gt;Test F1 score&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;Static BERT&lt;/td&gt;
+      &lt;td&gt;0.66&lt;/td&gt;
+      &lt;td&gt;0.61&lt;/td&gt;
+      &lt;td&gt;0.57&lt;/td&gt;
+      &lt;td&gt;0.53&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;Static BERT&lt;/td&gt;
+      &lt;td&gt;0.67&lt;/td&gt;
+      &lt;td&gt;0.62&lt;/td&gt;
+      &lt;td&gt;0.59&lt;/td&gt;
+      &lt;td&gt;0.57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Static BERT&lt;/td&gt;
+      &lt;td&gt;0.66&lt;/td&gt;
+      &lt;td&gt;0.62&lt;/td&gt;
+      &lt;td&gt;0.59&lt;/td&gt;
+      &lt;td&gt;0.55&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Data Preprocessing&lt;/th&gt;
+      &lt;th&gt;Data Augmentation&lt;/th&gt;
+      &lt;th&gt;Model&lt;/th&gt;
+      &lt;th&gt;Train accuracy&lt;/th&gt;
+      &lt;th&gt;Train F1 score&lt;/th&gt;
+      &lt;th&gt;Test accuracy&lt;/th&gt;
+      &lt;th&gt;Test F1 score&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;Fine-tuned BERT&lt;/td&gt;
+      &lt;td&gt;0.98&lt;/td&gt;
+      &lt;td&gt;0.97&lt;/td&gt;
+      &lt;td&gt;0.57&lt;/td&gt;
+      &lt;td&gt;0.41&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;Fine-tuned BERT&lt;/td&gt;
+      &lt;td&gt;0.97&lt;/td&gt;
+      &lt;td&gt;0.97&lt;/td&gt;
+      &lt;td&gt;0.58&lt;/td&gt;
+      &lt;td&gt;0.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Fine-tuned BERT&lt;/td&gt;
+      &lt;td&gt;0.97&lt;/td&gt;
+      &lt;td&gt;0.96&lt;/td&gt;
+      &lt;td&gt;0.64&lt;/td&gt;
+      &lt;td&gt;0.52&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Here, the baseline model is nothing but the pre-trained BERT-based model, and the embeddings of the sentences obtained from this model are compared using a cosine similarity. This provided us a good baseline result and starting point, which we tried to improve upon.&lt;/p&gt;
+
+&lt;p&gt;For the other two models, the dataset was then split into training and testing data with a ratio of 80:20 respectively. The models were trained over this data for 5 epochs with a learning rate of 0.0001 and batch size of 8. The architecture used for these models in this experiment : &lt;strong&gt;&lt;em&gt;BERT -&amp;gt; FFN -&amp;gt; Sigmoid layer -&amp;gt; FFN -&amp;gt; Softmax layer&lt;/em&gt;&lt;/strong&gt;. In the Static BERT model the pre-trained BERT model is kept static and the remaining layers are trained, whereas in the Fine-tuned BERT, all the layers are trained and the pre-trained BERT-based model is fine-tuned on our dataset.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Inference&lt;/strong&gt; : As we can see from the table, applying data preprocessing techniques (mentioned in section 2) and data augmentation techniques increases the accuracy on the test data. This empirically backs our decision to do data preprocessing and augmentation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Experiment 2 : Model selection&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Through the second set of experiments, we tried to gain insight on which model would work best for our problem. As a part of this, we ran our baseline, Static BERT, and Fine-tuned BERT on a sample dataset of 10000 datapoints randomly chosen from the original dataset. For the Static BERT and Fine-tuned BERT models we again split the data into train and test with a 80:20 ratio, and ran them for 10 epochs with a learning rate of 0.0001 and batch size 32. The architecture used for these 2 models in this experiment : &lt;strong&gt;&lt;em&gt;BERT -&amp;gt; FFN -&amp;gt; PRelu -&amp;gt; FFN -&amp;gt; PRelu -&amp;gt; FFN -&amp;gt; Softmax Layer&lt;/em&gt;&lt;/strong&gt;. The results are seen in the table below:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Data Preprocessing&lt;/th&gt;
+      &lt;th&gt;Data Augmentation&lt;/th&gt;
+      &lt;th&gt;Model&lt;/th&gt;
+      &lt;th&gt;Train accuracy&lt;/th&gt;
+      &lt;th&gt;Train F1 score&lt;/th&gt;
+      &lt;th&gt;Test accuracy&lt;/th&gt;
+      &lt;th&gt;Test F1 score&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Baseline&lt;/td&gt;
+      &lt;td&gt;0.59&lt;/td&gt;
+      &lt;td&gt;0.6&lt;/td&gt;
+      &lt;td&gt;0.6&lt;/td&gt;
+      &lt;td&gt;0.61&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Static BERT&lt;/td&gt;
+      &lt;td&gt;0.7&lt;/td&gt;
+      &lt;td&gt;0.63&lt;/td&gt;
+      &lt;td&gt;0.68&lt;/td&gt;
+      &lt;td&gt;0.61&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Fine-tuned BERT&lt;/td&gt;
+      &lt;td&gt;0.99&lt;/td&gt;
+      &lt;td&gt;0.98&lt;/td&gt;
+      &lt;td&gt;0.71&lt;/td&gt;
+      &lt;td&gt;0.62&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Inference&lt;/strong&gt; : As it can be seen in the table, the Fine-tuned BERT model produces the best accuracy results on the data as compared to the baseline and Static-BERT. This again empirically backs our decision to choose a pre-trained BERT model and fine-tune it on our dataset.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Experiment 3 : Final model&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Once we chose the model as the Fine-tuned BERT model based on the results from experiment 2, we did some hyperparamter tuning to pick the best combination of hyperparameters for performance. We found that a batch size of 128 and a training over 5 epochs gave the best results for our Fine-tuned BERT model. For this experiment we used 100,000 data points from the original dataset. The results for this experiment are shown below:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Data Preprocessing&lt;/th&gt;
+      &lt;th&gt;Data Augmentation&lt;/th&gt;
+      &lt;th&gt;Model&lt;/th&gt;
+      &lt;th&gt;Train accuracy&lt;/th&gt;
+      &lt;th&gt;Train F1 score&lt;/th&gt;
+      &lt;th&gt;Test accuracy&lt;/th&gt;
+      &lt;th&gt;Test F1 score&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Fine-tuned BERT&lt;/td&gt;
+      &lt;td&gt;0.97&lt;/td&gt;
+      &lt;td&gt;0.96&lt;/td&gt;
+      &lt;td&gt;0.76&lt;/td&gt;
+      &lt;td&gt;0.69&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;We also tried adding a dropout layer to observe if any significant overfitting was occurring. However, this did not result in any change in the results. Thus, we can conclude that our model does not overfit.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Future experiments:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Experiment 3 was the final set of experiments done for the supervised part of our project before the midpoint deadline.
+We also hope to gain insight by clustering similar questions and
 analyze the reason for their similarity, which may help in
 downstream tasks such as automatic question tagging, and
-personalized recommendation of questions basedon the field of
-interest.&lt;/p&gt;
+personalized recommendation of questions based on the field of
+interest. This will be the unsupervised portion of our project.&lt;/p&gt;
 
 &lt;h1 id=&quot;proposed-timeline-and-responsibilities-&quot;&gt;Proposed Timeline and Responsibilities :&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&quot;https://yashjakhotiya.github.io/blog/images/2021-10-03-quora-question-pairs/timeline.png&quot; alt=&quot;&quot; title=&quot;Timeline&quot; /&gt;&lt;/p&gt;

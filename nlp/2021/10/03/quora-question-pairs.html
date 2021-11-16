@@ -131,7 +131,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      9 min read
     
 </span></p>
 
@@ -154,6 +154,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#problem-definition-">Problem Definition :</a></li>
 <li class="toc-entry toc-h1"><a href="#methods">Methods:</a></li>
 <li class="toc-entry toc-h1"><a href="#potential-results-and-discussions">Potential Results and Discussions:</a></li>
+<li class="toc-entry toc-h1"><a href="#midpoint-results-and-analysis">Midpoint results and analysis</a></li>
 <li class="toc-entry toc-h1"><a href="#proposed-timeline-and-responsibilities-">Proposed Timeline and Responsibilities :</a></li>
 <li class="toc-entry toc-h1"><a href="#references-">References :</a></li>
 </ul><p><em>Course project for <a href="https://mahdi-roozbahani.github.io/CS46417641-fall2021/">CS 7641</a></em></p>
@@ -172,20 +173,65 @@ window.onload = wrap_img;
 <a class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods:</h1>
 
 <ol>
-  <li>
-    <p>Dataset: The dataset that we will be using is the Quora Question Pairs dataset<sup>[1]</sup>. It consists of 404,290 pairs of questions. Each datapoint consists of a pairof questions and whether
-or not they are similar.</p>
+  <li>Dataset: The dataset that we will be using is the Quora Question Pairs dataset<sup>[1]</sup>. It consists of 404,290 pairs of questions. Each datapoint consists of a pairof questions and whether
+or not they are similar.</li>
+</ol>
+
+<p><img src="https://user-images.githubusercontent.com/22400185/141877000-0663d2d9-2a99-4f59-b7ee-1cd367323457.png" alt="WordCloud">
+<em>Fig 1: Word Cloud depicting which words appear more frequently in the dataset</em></p>
+
+<p><img src="https://user-images.githubusercontent.com/22400185/141876903-478cd635-ae3a-45c8-a491-7f71b0c14011.jpeg" alt="Histogram of character count">
+<em>Fig 2: Histogram representing the number of characters in each question</em></p>
+
+<p><img src="https://user-images.githubusercontent.com/22400185/141876911-18ff1378-cb7a-411c-b82b-f13c571eddd2.jpeg" alt="Histogram of word count">
+<em>Fig 3: Histogram representing the number of words in each question</em></p>
+
+<p><img src="https://user-images.githubusercontent.com/22400185/141876917-4d315806-63bb-4a46-a7a4-c55c6acff8ac.jpeg" alt="Word share"></p>
+
+<p><em>Fig 4: Plots representing the distribution of ratio of words shared between similar and dissimlar question</em></p>
+
+<ol>
+  <li>Data Augmentation:
+    <ul>
+      <li>We exploit the transitive property of similarity to generate new datapoints.
+        <ul>
+          <li>If Question Q<sub>1</sub> is similar to Question Q<sub>2</sub> and Question Q<sub>2</sub> is similar to Question Q<sub>3</sub>, then we can infer that Q<sub>1</sub> is similar to Q<sub>3</sub>
+</li>
+          <li>If Question Q<sub>1</sub> is similar to Question Q<sub>2</sub> and Question Q<sub>2</sub> is not similar to Question Q<sub>3</sub>, then we can infer that Q<sub>1</sub> is not similar to Q<sub>3</sub>
+</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>Through this method, we generated 25% more training datapoints.</p>
   </li>
   <li>Data preprocessing:
     <ul>
-      <li>One augmentation method we plan to leverage is the transitive property of similarity and create more question pairs. Assuming a question is represented as 𝑄<sub>𝑖</sub>. If 𝑄<sub>1</sub> - 𝑄<sub>2</sub> are similar and 𝑄<sub>2</sub> - 𝑄<sub>3</sub> are similar, then 𝑄<sub>1</sub> - 𝑄<sub>3</sub> will also be similar.</li>
-      <li>Other preprocessing techniques we intend to use are,
-        <ol>
-          <li>Noise Removal</li>
-          <li>Removing stopwords and punctuation</li>
-          <li>Tokenization</li>
-          <li>Lemmatization and stemming</li>
-        </ol>
+      <li>We used the following preprocessing techniques:
+        <ul>
+          <li>Sample Sentence: “How can internet speed be increased by hacking through DNS?”
+            <ol>
+              <li>Removing punctuation</li>
+            </ol>
+            <ul>
+              <li>After Punctuation Removal: “How can internet speed be increased by hacking through DNS”
+          2. Converting characters to Lower Case</li>
+              <li>After conversion: “how can internet speed be increased by hacking through dns”
+          3. Tokenization</li>
+              <li>Tokenization is the process of converting the sentence into a list of it’s constituent words/phrases. It helps reduce the input to a finite set, making it easier to process.</li>
+              <li>After Tokenization: [‘how’, ‘can’, ‘internet’, ‘speed’, ‘be’, ‘increased’, ‘by’, ‘hacking’, ‘through’, ‘dns’]
+          4. Stop Word Removal</li>
+              <li>The idea of Stop Word Removal is to remove commonly occuring words in the corpus.</li>
+              <li>After Stop Word Removal: [‘internet’, ‘speed’, ‘increased’, ‘hacking’, ‘dns’]
+          5. POS Tagging</li>
+              <li>POS tagging refers to categorizing words in a corpus corresponding to a particular part of speech (eg: Noun, Verb, Adjective etc). This process helps improve the performance of the Lemmatizer.</li>
+              <li>After POS Tagging: [(‘internet’, ‘a’), (‘speed’, ‘n’), (‘increased’, ‘v’), (‘hacking’, ‘v’), (‘dns’, ‘n’)]
+          6. Lemmatization</li>
+              <li>Lemmatization is grouping together different inflected forms of a word so that they can be analyzed as a single item.</li>
+              <li>After Lemmatization: [‘internet’, ‘speed’, ‘increase’, ‘hack’, ‘dns’]</li>
+            </ul>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -196,6 +242,21 @@ or not they are similar.</p>
       <li>Next, these representations are concatenated 𝑣<sub>𝑐𝑜𝑛</sub> = 𝑐𝑜𝑛𝑐𝑎𝑡(ν<sub>𝑖</sub>, ν<sub>𝑗</sub>), and passed on to a feedforward neural network or a machine learning model 𝐹 (𝑣𝑐𝑜𝑛) that predicts whether two questions are similar or not.</li>
       <li>∀ questions 𝑄<sub>𝑖</sub> ε question bank 𝑄<sub>𝐵</sub>, we group them into clusters 𝑐<sub><em>1</em></sub>,…,𝑐<sub><em>n</em></sub> for efficient inference.</li>
     </ul>
+
+    <p><strong>Supervised method: Classifying sentences as similar or not using  BERT-based model (Added for midpoint report)</strong></p>
+    <ul>
+      <li>The tokenized version of the candidate sentence that we get from the preprocessing stage is first passed to a pre-trained BERT model.</li>
+      <li>The output of this pre-trained BERT model is the sentence-level embedding of the tokenized version - E<sub>1.</sub>
+</li>
+      <li>The same process is done on the second candidate sentence to retrieve its sentence-level embedding - E<sub>2.</sub>
+</li>
+      <li>The two embeddings are concatenated, and then passed to a feed-forward neural network which consists of a fully connected layer, a ReLu layer, another fully       connected layer, and finally a softmax layer in the order specified.</li>
+      <li>The softmax layer then outputs the probabilities of the pair of candidate questions being similar. Based on the probabilities we classify the questions as         similar or not similar.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/39705529/141838152-b27025fc-becc-47b6-a20f-f6c7bb41e548.png" alt="image"></p>
+
+    <p><em>Fig 5: BERT takes in sentences as inputs and gives sentence-level embeddings as the output</em></p>
   </li>
   <li>Inference:
     <ul>
@@ -223,7 +284,7 @@ or not they are similar.</p>
       </li>
       <li>Potential models for finding similarity
         <ul>
-          <li>Feedforward neural network</li>
+          <li>Feedforward neural network (FFN)</li>
           <li>Gradient boosted trees</li>
         </ul>
       </li>
@@ -239,11 +300,238 @@ or not they are similar.</p>
 query question input by a user, and further list the <strong><em>top-k</em></strong> most
 relevant questions.</p>
 
-<p>We also hope to gain insight by clustering similar questions and
+<h1 id="midpoint-results-and-analysis">
+<a class="anchor" href="#midpoint-results-and-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Midpoint results and analysis</h1>
+
+<p>For this checkpoint, we completed the supervised aspect of our project and implemented a BERT-based model to classify pairs of questions as “similar” or “not similar”. We conducted thorough experiments and ablation studies to find the optimal model, hyperparameters and data preprocessing &amp; augmentation techniques that gives us the best results.</p>
+
+<p><strong>Experiment 1 : Data preprocessing and augmentation choices</strong></p>
+
+<p>Through the first set of experiments, we try to observe the effects of data preprocessing and data augmentation on the performance of the model. We also apply three different types of models on a sample dataset of 1000 data points from the entire original dataset. The results of these are seen in the tables below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Preprocessing</th>
+      <th>Data Augmentation</th>
+      <th>Model</th>
+      <th>Train accuracy</th>
+      <th>Train F1 score</th>
+      <th>Test accuracy</th>
+      <th>Test F1 score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>No</td>
+      <td>No</td>
+      <td>Baseline</td>
+      <td>0.57</td>
+      <td>0.61</td>
+      <td>0.42</td>
+      <td>0.58</td>
+    </tr>
+    <tr>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Baseline</td>
+      <td>0.61</td>
+      <td>0.61</td>
+      <td>0.57</td>
+      <td>0.62</td>
+    </tr>
+    <tr>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Baseline</td>
+      <td>0.6</td>
+      <td>0.62</td>
+      <td>0.61</td>
+      <td>0.6</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Preprocessing</th>
+      <th>Data Augmentation</th>
+      <th>Model</th>
+      <th>Train accuracy</th>
+      <th>Train F1 score</th>
+      <th>Test accuracy</th>
+      <th>Test F1 score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>No</td>
+      <td>No</td>
+      <td>Static BERT</td>
+      <td>0.66</td>
+      <td>0.61</td>
+      <td>0.57</td>
+      <td>0.53</td>
+    </tr>
+    <tr>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Static BERT</td>
+      <td>0.67</td>
+      <td>0.62</td>
+      <td>0.59</td>
+      <td>0.57</td>
+    </tr>
+    <tr>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Static BERT</td>
+      <td>0.66</td>
+      <td>0.62</td>
+      <td>0.59</td>
+      <td>0.55</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Preprocessing</th>
+      <th>Data Augmentation</th>
+      <th>Model</th>
+      <th>Train accuracy</th>
+      <th>Train F1 score</th>
+      <th>Test accuracy</th>
+      <th>Test F1 score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>No</td>
+      <td>No</td>
+      <td>Fine-tuned BERT</td>
+      <td>0.98</td>
+      <td>0.97</td>
+      <td>0.57</td>
+      <td>0.41</td>
+    </tr>
+    <tr>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fine-tuned BERT</td>
+      <td>0.97</td>
+      <td>0.97</td>
+      <td>0.58</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Fine-tuned BERT</td>
+      <td>0.97</td>
+      <td>0.96</td>
+      <td>0.64</td>
+      <td>0.52</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Here, the baseline model is nothing but the pre-trained BERT-based model, and the embeddings of the sentences obtained from this model are compared using a cosine similarity. This provided us a good baseline result and starting point, which we tried to improve upon.</p>
+
+<p>For the other two models, the dataset was then split into training and testing data with a ratio of 80:20 respectively. The models were trained over this data for 5 epochs with a learning rate of 0.0001 and batch size of 8. The architecture used for these models in this experiment : <strong><em>BERT -&gt; FFN -&gt; Sigmoid layer -&gt; FFN -&gt; Softmax layer</em></strong>. In the Static BERT model the pre-trained BERT model is kept static and the remaining layers are trained, whereas in the Fine-tuned BERT, all the layers are trained and the pre-trained BERT-based model is fine-tuned on our dataset.</p>
+
+<p><strong>Inference</strong> : As we can see from the table, applying data preprocessing techniques (mentioned in section 2) and data augmentation techniques increases the accuracy on the test data. This empirically backs our decision to do data preprocessing and augmentation.</p>
+
+<p><strong>Experiment 2 : Model selection</strong></p>
+
+<p>Through the second set of experiments, we tried to gain insight on which model would work best for our problem. As a part of this, we ran our baseline, Static BERT, and Fine-tuned BERT on a sample dataset of 10000 datapoints randomly chosen from the original dataset. For the Static BERT and Fine-tuned BERT models we again split the data into train and test with a 80:20 ratio, and ran them for 10 epochs with a learning rate of 0.0001 and batch size 32. The architecture used for these 2 models in this experiment : <strong><em>BERT -&gt; FFN -&gt; PRelu -&gt; FFN -&gt; PRelu -&gt; FFN -&gt; Softmax Layer</em></strong>. The results are seen in the table below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Preprocessing</th>
+      <th>Data Augmentation</th>
+      <th>Model</th>
+      <th>Train accuracy</th>
+      <th>Train F1 score</th>
+      <th>Test accuracy</th>
+      <th>Test F1 score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Baseline</td>
+      <td>0.59</td>
+      <td>0.6</td>
+      <td>0.6</td>
+      <td>0.61</td>
+    </tr>
+    <tr>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Static BERT</td>
+      <td>0.7</td>
+      <td>0.63</td>
+      <td>0.68</td>
+      <td>0.61</td>
+    </tr>
+    <tr>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Fine-tuned BERT</td>
+      <td>0.99</td>
+      <td>0.98</td>
+      <td>0.71</td>
+      <td>0.62</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Inference</strong> : As it can be seen in the table, the Fine-tuned BERT model produces the best accuracy results on the data as compared to the baseline and Static-BERT. This again empirically backs our decision to choose a pre-trained BERT model and fine-tune it on our dataset.</p>
+
+<p><strong>Experiment 3 : Final model</strong></p>
+
+<p>Once we chose the model as the Fine-tuned BERT model based on the results from experiment 2, we did some hyperparamter tuning to pick the best combination of hyperparameters for performance. We found that a batch size of 128 and a training over 5 epochs gave the best results for our Fine-tuned BERT model. For this experiment we used 100,000 data points from the original dataset. The results for this experiment are shown below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Preprocessing</th>
+      <th>Data Augmentation</th>
+      <th>Model</th>
+      <th>Train accuracy</th>
+      <th>Train F1 score</th>
+      <th>Test accuracy</th>
+      <th>Test F1 score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Fine-tuned BERT</td>
+      <td>0.97</td>
+      <td>0.96</td>
+      <td>0.76</td>
+      <td>0.69</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We also tried adding a dropout layer to observe if any significant overfitting was occurring. However, this did not result in any change in the results. Thus, we can conclude that our model does not overfit.</p>
+
+<p><strong>Future experiments:</strong></p>
+
+<p>Experiment 3 was the final set of experiments done for the supervised part of our project before the midpoint deadline.
+We also hope to gain insight by clustering similar questions and
 analyze the reason for their similarity, which may help in
 downstream tasks such as automatic question tagging, and
-personalized recommendation of questions basedon the field of
-interest.</p>
+personalized recommendation of questions based on the field of
+interest. This will be the unsupervised portion of our project.</p>
 
 <h1 id="proposed-timeline-and-responsibilities-">
 <a class="anchor" href="#proposed-timeline-and-responsibilities-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proposed Timeline and Responsibilities :</h1>
