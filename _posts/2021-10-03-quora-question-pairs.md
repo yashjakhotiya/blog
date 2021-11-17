@@ -23,8 +23,9 @@ The aim is to identify and flag questions with a high similarity index, and reta
 
 # Methods:
 
-1. Dataset: The dataset that we will be using is the Quora Question Pairs dataset<sup>[1]</sup>. It consists of 404,290 pairs of questions. Each datapoint consists of a pairof questions and whether
-or not they are similar.
+1. Dataset: The dataset that we will be using is the Quora Question Pairs dataset<sup>[1]</sup>. It consists of 404,290 pairs of questions. Each datapoint consists of a pair of questions and whether or not they are similar.
+
+In order to gain useful insights, we visualize and understand patterns in our data using the following plots.
 
 ![WordCloud](https://user-images.githubusercontent.com/22400185/141877000-0663d2d9-2a99-4f59-b7ee-1cd367323457.png)
 _Fig 1: Word Cloud depicting which words appear more frequently in the dataset_
