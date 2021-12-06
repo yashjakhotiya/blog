@@ -13,15 +13,15 @@ author: "<a href='https://www.linkedin.com/in/abhijithragav/'>Abhijith Ragav</a>
 
 _Course project for [CS 7641](https://mahdi-roozbahani.github.io/CS46417641-fall2021/)_
 
-# Introduction/Background :
+# Introduction/Background
 
 With public discussion forums becoming highly popular in recent times, especially with classes and work moving to an online setup, websites like Edstem, Piazza, Stack Overflow and Quora have a constant influx of a large volume of questions. Multiple questions with the same intent leads to redundancy, and waste of time, space and resources.
 
-# Problem Definition :
+# Problem Definition
 
 The aim is to identify and flag questions with a high similarity index, and retain only canonical questions in order to make the work of administrative staff such as TAs/Professors easier in terms of answering repeated questions or questions of the same intent.
 
-# Methods:
+# Methods
 
 1. Dataset: The dataset that we will be using is the Quora Question Pairs dataset<sup>[1]</sup>. It consists of 404,290 pairs of questions. Each datapoint consists of a pair of questions and whether or not they are similar.
 
@@ -92,32 +92,22 @@ _Fig 4: Plots representing the distribution of ratio of words shared between sim
 
 
 6. Models in consideration:
-    - Potential models for learning representations
-        - BERT-like models (RoBERTa, ALBERT, DeBERTa) 
-        - GPT models
+    - Models for learning representations
+        - BERT
+        - GPT
         - XLNet
-    - Potential models for clustering
+    - Models for clustering
         - K-means
-        - DBSCAN
-        - GMM
-    - Potential models for finding similarity
+    - Models for finding similarity
         - Feedforward neural network (FFN)
-        - Gradient boosted trees
 
 ![](https://yashjakhotiya.github.io/blog//images/2021-10-03-quora-question-pairs/similar-questions-flow-chart.png "Model in action") 
 
+# Final results and analysis
 
-
-# Potential Results and Discussions:
-We aim to confidently identify a representative question for a
-query question input by a user, and further list the **_top-k_** most
-relevant questions.
-
-# Midpoint results and analysis
-
-For this checkpoint, we completed the supervised aspect of our project and implemented a BERT-based model to classify pairs of questions as "similar" or "not similar". We conducted thorough experiments and ablation studies to find the optimal model, hyperparameters and data preprocessing & augmentation techniques that gives us the best results.
+### Supervised Learning Pipeline
  
-**Experiment 1 : Data preprocessing and augmentation choices**
+**Experiment 1 : Data Preprocessing and Augmentation Choices Ablation**
     
 Through the first set of experiments, we try to observe the effects of data preprocessing and data augmentation on the performance of the model. We also apply three different types of models on a sample dataset of 1000 data points from the entire original dataset. The results of these are seen in the tables below:
 
@@ -146,7 +136,7 @@ For the other two models, the dataset was then split into training and testing d
 
 **Inference** : As we can see from the table, applying data preprocessing techniques (mentioned in section 2) and data augmentation techniques increases the accuracy on the test data. This empirically backs our decision to do data preprocessing and augmentation.
 
-**Experiment 2 : Model selection**
+**Experiment 2 : Fine Tuning Ablation**
 
 Through the second set of experiments, we tried to gain insight on which model would work best for our problem. As a part of this, we ran our baseline, Static BERT, and Fine-tuned BERT on a sample dataset of 10000 datapoints randomly chosen from the original dataset. For the Static BERT and Fine-tuned BERT models we again split the data into train and test with a 80:20 ratio, and ran them for 10 epochs with a learning rate of 0.0001 and batch size 32. The architecture used for these 2 models in this experiment : ***BERT -> FFN -> PRelu -> FFN -> PRelu -> FFN -> Softmax Layer***. The results are seen in the table below:
 
@@ -158,30 +148,52 @@ Through the second set of experiments, we tried to gain insight on which model w
 
 **Inference** : As it can be seen in the table, the Fine-tuned BERT model produces the best accuracy results on the data as compared to the baseline and Static-BERT. This again empirically backs our decision to choose a pre-trained BERT model and fine-tune it on our dataset. 
 
-**Experiment 3 : Final model**
+**Experiment 3 : Model Selection Ablation**
     
-Once we chose the model as the Fine-tuned BERT model based on the results from experiment 2, we did some hyperparamter tuning to pick the best combination of hyperparameters for performance. We found that a batch size of 128 and a training over 5 epochs gave the best results for our Fine-tuned BERT model. For this experiment we used 100,000 data points from the original dataset. The results for this experiment are shown below:
+We chose to fine-tune our models based on the results from experiment 2. Next, we did some hyperparamter tuning to pick the best combination of hyperparameters for performance. We found that a batch size of 128 and a training over 5 epochs gave the best test results for our Fine-tuned BERT model. We then trained all 400,000 question pairs with this hyperparameter setting. We repeated the same process with GPT and XLNet architectures. The results for this experiment are shown below:
 
-| Data Preprocessing  | Data Augmentation  | Model | Train accuracy | Train F1 score | Test accuracy | Test F1 score |
-|---|---|---|---|---|---|---|
-| Yes  |  Yes |  Fine-tuned BERT |  0.97  | 0.96  | 0.76  | 0.69  |
+| Model | Train accuracy | Test accuracy |
+|---|---|---|
+| Fine-tuned BERT |  0.94  | 0.86  |
+| Fine-tuned GPT-2|  0.65  | 0.63  |
+| Fine-tuned XLNet|  0.64  | 0.64  |
 
-We also tried adding a dropout layer to observe if any significant overfitting was occurring. However, this did not result in any change in the results. Thus, we can conclude that our model does not overfit. 
+**Inference** : As it can be seen in the table, the Fine-tuned BERT model produces the best accuracy results on the test data as compared to the GPT-2 and XLNet models. Thus, we present the Fine-tuned BERT model as our final supervised learning model with a test accuracy of 86%.
 
-**Future experiments:**    
+### Unsupervised Learning Pipeline for Efficient Inference
     
-Experiment 3 was the final set of experiments done for the supervised part of our project before the midpoint deadline.
-We also hope to gain insight by clustering similar questions and
-analyze the reason for their similarity, which may help in
-downstream tasks such as automatic question tagging, and
-personalized recommendation of questions based on the field of
-interest. This will be the unsupervised portion of our project.
+We build an unsupervised learning pipeline in order to cluster similar questions. The pipeline consists of 3 steps : 
+1. The first part of the pipeline consists of creating BERT embeddings of all the questions after preprocessing them.
+2. We then perform Principal Component Analysis (PCA) in order to reduce the dimensionality of our dataset. From the below graph, we can infer that with just 15 components, 99 percent of the variance is retained.
+    
+    ![image](https://user-images.githubusercontent.com/46374506/144763989-c6abfce0-3003-4b3d-9921-d9aad90937f5.png)
 
-# Proposed Timeline and Responsibilities :
+3. We cluster the preprocessed dataset using Kmeans clustering algorithm. The elbow method plotted below, is used to find out the ideal number of clusters after analysing the tradeoff between performance and computation cost. From the graph, we can infer that the elbow is at 100 clusters
+    
+    ![image](https://user-images.githubusercontent.com/46374506/144764219-06373665-f8cb-429a-a9e6-fced14b99b33.png)
+
+This unsupervised learning pipeline is used to create a smaller question space from which we can choose the candidate reference questions. This in turn reduces the time overhead by 100 times during inference. Here is an example illustrating potential canonical questions:<br><br>
+
+![image](https://user-images.githubusercontent.com/46374506/144765011-a35e1759-c413-47be-aa07-d9246e30c682.png)
+<br><br>
+    
+# Conclusion
+
+In this project, we propose a method to classify questions as similar or not similar using a combination of a supervised method and unsupervised method.  
+
+For the supervised method, we implemented multiple transformer based models (such as BERT, GPT-2, and XLNet) as backbones over a feed forward neural network to classify whether two questions are similar or not. After extensive results and ablations we were able to finalize our model as the pre-trained BERT model which is fine-tuned on our data. This supervised model classifies the given query question as similar or not after comparison with the top K reference questions obtained from the unsupervised pipeline based on their sentence embeddings. We achieve a test accuracy of 86% for this task.
+
+For the unsupervised method, we use K-means clustering to group the questions in the dataset based on their sentence level embeddings, in order to narrow down the question space from which the reference questions are picked for comparison. The unsupervised pipeline gives us the candidate similar questions for each of the clusters. Through this, we were able to form 100 clusters which reduces our overhead significantly.
+
+# Future experiments:   
+    
+Future work may include downstream tasks such as automatic question tagging, and personalized recommendation of questions based on the field of interest. This can be very advantageous for forums such as Ed, Quora, Piazza, etc. and can help towards making the work of teaching staff easier.
+    
+# Timeline and Responsibilities
 ![](https://yashjakhotiya.github.io/blog/images/2021-10-03-quora-question-pairs/timeline.png "Timeline") 
 
 
-# References :
+# References
 1. https://quoradata.quora.com/First-Quora-Dataset-Release-Question-Pairs
 2. D. A. Prabowo and G. Budi Herwanto, "Duplicate Question Detection in Question Answer Website using Convolutional Neural Network," 2019 5th International Conference on Science and Technology (ICST), 2019, pp. 1-6, doi: 10.1109/ICST47872.2019.9166343.
 3. Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina
