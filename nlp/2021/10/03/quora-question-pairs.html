@@ -551,9 +551,11 @@ window.onload = wrap_img;
 <h1 id="conclusion">
 <a class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h1>
 
-<p>In this project, we propose a method to classify questions as similar or not similar using a combination of a supervised method and unsupervised method. For the unsupervised method, we use K-means clustering to group the questions in the dataset based on their sentence level embeddings, in order to narrow down the question space from which the reference questions are picked for comparison. The unsupervised pipeline gives us the candidate similar questions for each of the clusters. Through this, we were able to form 100 clusters which reduces our overhead significantly.</p>
+<p>In this project, we propose a method to classify questions as similar or not similar using a combination of a supervised method and unsupervised method.</p>
 
-<p>For the supervised method, we implement a combination of transformer based models (such as BERT, GPT-2, and XLNet) and a feed forward neural network to classify the test question as similar or not. After extensive results and ablations we were able to finalize our model as the pre-trained BERT model which is fine-tuned on our data. This supervised model classifies the given query question as similar or not after comparison with the top K reference questions obtained from the unsupervised pipeline based on their sentence embeddings. We achieve a test accuracy of 76% for this task.</p>
+<p>For the supervised method, we implemented multiple transformer based models (such as BERT, GPT-2, and XLNet) as backbones over a feed forward neural network to classify whether two questions are similar or not. After extensive results and ablations we were able to finalize our model as the pre-trained BERT model which is fine-tuned on our data. This supervised model classifies the given query question as similar or not after comparison with the top K reference questions obtained from the unsupervised pipeline based on their sentence embeddings. We achieve a test accuracy of 86% for this task.</p>
+
+<p>For the unsupervised method, we use K-means clustering to group the questions in the dataset based on their sentence level embeddings, in order to narrow down the question space from which the reference questions are picked for comparison. The unsupervised pipeline gives us the candidate similar questions for each of the clusters. Through this, we were able to form 100 clusters which reduces our overhead significantly.</p>
 
 <h1 id="future-experiments">
 <a class="anchor" href="#future-experiments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future experiments:</h1>
