@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://yashjakhotiya.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yashjakhotiya.github.io/blog/" rel="alternate" type="text/html" /><updated>2021-11-16T18:36:37-06:00</updated><id>https://yashjakhotiya.github.io/blog/feed.xml</id><title type="html">Blog</title><subtitle>Blog</subtitle><entry><title type="html">pinv »&amp;gt; inv</title><link href="https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html" rel="alternate" type="text/html" title="pinv &gt;&gt;&gt; inv" /><published>2021-11-07T00:00:00-05:00</published><updated>2021-11-07T00:00:00-05:00</updated><id>https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion</id><content type="html" xml:base="https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html">&lt;p&gt;In this post, let’s go all the way back to something as “basic” as linear regression and it’s closed form solution through least squares method and try to unearth a couple of linear algebra gems.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://yashjakhotiya.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yashjakhotiya.github.io/blog/" rel="alternate" type="text/html" /><updated>2021-12-06T05:28:59-06:00</updated><id>https://yashjakhotiya.github.io/blog/feed.xml</id><title type="html">Blog</title><subtitle>Blog</subtitle><entry><title type="html">pinv »&amp;gt; inv</title><link href="https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html" rel="alternate" type="text/html" title="pinv &gt;&gt;&gt; inv" /><published>2021-11-07T00:00:00-05:00</published><updated>2021-11-07T00:00:00-05:00</updated><id>https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion</id><content type="html" xml:base="https://yashjakhotiya.github.io/blog/linear%20algebra/2021/11/07/moore-penrose-inversion.html">&lt;p&gt;In this post, let’s go all the way back to something as “basic” as linear regression and it’s closed form solution through least squares method and try to unearth a couple of linear algebra gems.&lt;/p&gt;
 
 &lt;h1 id=&quot;when-explicit-formulation-failed&quot;&gt;When explicit formulation failed&lt;/h1&gt;
 &lt;p&gt;In an ML class, we were told to find out weights to a linear regression problem through least squares method, before we went to gradient descent. My first instinct was to use the formulation (derivation in the &lt;a href=&quot;https://mahdi-roozbahani.github.io/CS46417641-fall2021/course/15-linear-regression-note.pdf&quot;&gt;slides&lt;/a&gt;) -&lt;/p&gt;
@@ -212,15 +212,15 @@ Elsevier.&lt;/p&gt;</content><author><name>&lt;a href='https://www.linkedin.com/
   &lt;li&gt;&lt;a href=&quot;https://cocoxu.github.io/CS7650_fall2021/slides/lec11-seq2seq.pdf&quot;&gt;Seq2Seq problems - need for Attention, Attention, NMT, BPE, WordPieces&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>&lt;a href='https://www.linkedin.com/in/yash-jakhotiya/'&gt;Yash Jakhotiya&lt;/a&gt;</name></author><summary type="html">There are times when you need to look back to something and reassure yourself that you really really understand it. This is a dynamic work-in-progress list of resources that has, potentially in a distant past, helped me do that.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://yashjakhotiya.github.io/blog/images/list-of-resources/linked-tori.png" /><media:content medium="image" url="https://yashjakhotiya.github.io/blog/images/list-of-resources/linked-tori.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Can we avoid repeated questions by identifying similar intent?</title><link href="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html" rel="alternate" type="text/html" title="Can we avoid repeated questions by identifying similar intent?" /><published>2021-10-03T00:00:00-05:00</published><updated>2021-10-03T00:00:00-05:00</updated><id>https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs</id><content type="html" xml:base="https://yashjakhotiya.github.io/blog/nlp/2021/10/03/quora-question-pairs.html">&lt;p&gt;&lt;em&gt;Course project for &lt;a href=&quot;https://mahdi-roozbahani.github.io/CS46417641-fall2021/&quot;&gt;CS 7641&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;introductionbackground-&quot;&gt;Introduction/Background :&lt;/h1&gt;
+&lt;h1 id=&quot;introductionbackground&quot;&gt;Introduction/Background&lt;/h1&gt;
 
 &lt;p&gt;With public discussion forums becoming highly popular in recent times, especially with classes and work moving to an online setup, websites like Edstem, Piazza, Stack Overflow and Quora have a constant influx of a large volume of questions. Multiple questions with the same intent leads to redundancy, and waste of time, space and resources.&lt;/p&gt;
 
-&lt;h1 id=&quot;problem-definition-&quot;&gt;Problem Definition :&lt;/h1&gt;
+&lt;h1 id=&quot;problem-definition&quot;&gt;Problem Definition&lt;/h1&gt;
 
 &lt;p&gt;The aim is to identify and flag questions with a high similarity index, and retain only canonical questions in order to make the work of administrative staff such as TAs/Professors easier in terms of answering repeated questions or questions of the same intent.&lt;/p&gt;
 
-&lt;h1 id=&quot;methods&quot;&gt;Methods:&lt;/h1&gt;
+&lt;h1 id=&quot;methods&quot;&gt;Methods&lt;/h1&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Dataset: The dataset that we will be using is the Quora Question Pairs dataset&lt;sup&gt;[1]&lt;/sup&gt;. It consists of 404,290 pairs of questions. Each datapoint consists of a pair of questions and whether or not they are similar.&lt;/li&gt;
@@ -315,24 +315,21 @@ Elsevier.&lt;/p&gt;</content><author><name>&lt;a href='https://www.linkedin.com/
   &lt;/li&gt;
   &lt;li&gt;Models in consideration:
     &lt;ul&gt;
-      &lt;li&gt;Potential models for learning representations
+      &lt;li&gt;Models for learning representations
         &lt;ul&gt;
-          &lt;li&gt;BERT-like models (RoBERTa, ALBERT, DeBERTa)&lt;/li&gt;
-          &lt;li&gt;GPT models&lt;/li&gt;
+          &lt;li&gt;BERT&lt;/li&gt;
+          &lt;li&gt;GPT&lt;/li&gt;
           &lt;li&gt;XLNet&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;Potential models for clustering
+      &lt;li&gt;Models for clustering
         &lt;ul&gt;
           &lt;li&gt;K-means&lt;/li&gt;
-          &lt;li&gt;DBSCAN&lt;/li&gt;
-          &lt;li&gt;GMM&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;Potential models for finding similarity
+      &lt;li&gt;Models for finding similarity
         &lt;ul&gt;
           &lt;li&gt;Feedforward neural network (FFN)&lt;/li&gt;
-          &lt;li&gt;Gradient boosted trees&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -341,16 +338,11 @@ Elsevier.&lt;/p&gt;</content><author><name>&lt;a href='https://www.linkedin.com/
 
 &lt;p&gt;&lt;img src=&quot;https://yashjakhotiya.github.io/blog//images/2021-10-03-quora-question-pairs/similar-questions-flow-chart.png&quot; alt=&quot;&quot; title=&quot;Model in action&quot; /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;potential-results-and-discussions&quot;&gt;Potential Results and Discussions:&lt;/h1&gt;
-&lt;p&gt;We aim to confidently identify a representative question for a
-query question input by a user, and further list the &lt;strong&gt;&lt;em&gt;top-k&lt;/em&gt;&lt;/strong&gt; most
-relevant questions.&lt;/p&gt;
+&lt;h1 id=&quot;final-results-and-analysis&quot;&gt;Final results and analysis&lt;/h1&gt;
 
-&lt;h1 id=&quot;midpoint-results-and-analysis&quot;&gt;Midpoint results and analysis&lt;/h1&gt;
+&lt;h3 id=&quot;supervised-learning-pipeline&quot;&gt;Supervised Learning Pipeline&lt;/h3&gt;
 
-&lt;p&gt;For this checkpoint, we completed the supervised aspect of our project and implemented a BERT-based model to classify pairs of questions as “similar” or “not similar”. We conducted thorough experiments and ablation studies to find the optimal model, hyperparameters and data preprocessing &amp;amp; augmentation techniques that gives us the best results.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Experiment 1 : Data preprocessing and augmentation choices&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Experiment 1 : Data Preprocessing and Augmentation Choices Ablation&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Through the first set of experiments, we try to observe the effects of data preprocessing and data augmentation on the performance of the model. We also apply three different types of models on a sample dataset of 1000 data points from the entire original dataset. The results of these are seen in the tables below:&lt;/p&gt;
 
@@ -489,7 +481,7 @@ relevant questions.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Inference&lt;/strong&gt; : As we can see from the table, applying data preprocessing techniques (mentioned in section 2) and data augmentation techniques increases the accuracy on the test data. This empirically backs our decision to do data preprocessing and augmentation.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Experiment 2 : Model selection&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Experiment 2 : Fine Tuning Ablation&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Through the second set of experiments, we tried to gain insight on which model would work best for our problem. As a part of this, we ran our baseline, Static BERT, and Fine-tuned BERT on a sample dataset of 10000 datapoints randomly chosen from the original dataset. For the Static BERT and Fine-tuned BERT models we again split the data into train and test with a 80:20 ratio, and ran them for 10 epochs with a learning rate of 0.0001 and batch size 32. The architecture used for these 2 models in this experiment : &lt;strong&gt;&lt;em&gt;BERT -&amp;gt; FFN -&amp;gt; PRelu -&amp;gt; FFN -&amp;gt; PRelu -&amp;gt; FFN -&amp;gt; Softmax Layer&lt;/em&gt;&lt;/strong&gt;. The results are seen in the table below:&lt;/p&gt;
 
@@ -538,50 +530,75 @@ relevant questions.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Inference&lt;/strong&gt; : As it can be seen in the table, the Fine-tuned BERT model produces the best accuracy results on the data as compared to the baseline and Static-BERT. This again empirically backs our decision to choose a pre-trained BERT model and fine-tune it on our dataset.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Experiment 3 : Final model&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Experiment 3 : Model Selection Ablation&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Once we chose the model as the Fine-tuned BERT model based on the results from experiment 2, we did some hyperparamter tuning to pick the best combination of hyperparameters for performance. We found that a batch size of 128 and a training over 5 epochs gave the best results for our Fine-tuned BERT model. For this experiment we used 100,000 data points from the original dataset. The results for this experiment are shown below:&lt;/p&gt;
+&lt;p&gt;We chose to fine-tune our models based on the results from experiment 2. Next, we did some hyperparamter tuning to pick the best combination of hyperparameters for performance. We found that a batch size of 128 and a training over 5 epochs gave the best test results for our Fine-tuned BERT model. We then trained all 400,000 question pairs with this hyperparameter setting. We repeated the same process with GPT and XLNet architectures. The results for this experiment are shown below:&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th&gt;Data Preprocessing&lt;/th&gt;
-      &lt;th&gt;Data Augmentation&lt;/th&gt;
       &lt;th&gt;Model&lt;/th&gt;
       &lt;th&gt;Train accuracy&lt;/th&gt;
-      &lt;th&gt;Train F1 score&lt;/th&gt;
       &lt;th&gt;Test accuracy&lt;/th&gt;
-      &lt;th&gt;Test F1 score&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;Yes&lt;/td&gt;
-      &lt;td&gt;Yes&lt;/td&gt;
       &lt;td&gt;Fine-tuned BERT&lt;/td&gt;
-      &lt;td&gt;0.97&lt;/td&gt;
-      &lt;td&gt;0.96&lt;/td&gt;
-      &lt;td&gt;0.76&lt;/td&gt;
-      &lt;td&gt;0.69&lt;/td&gt;
+      &lt;td&gt;0.94&lt;/td&gt;
+      &lt;td&gt;0.86&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Fine-tuned GPT-2&lt;/td&gt;
+      &lt;td&gt;0.65&lt;/td&gt;
+      &lt;td&gt;0.63&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Fine-tuned XLNet&lt;/td&gt;
+      &lt;td&gt;0.64&lt;/td&gt;
+      &lt;td&gt;0.64&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;We also tried adding a dropout layer to observe if any significant overfitting was occurring. However, this did not result in any change in the results. Thus, we can conclude that our model does not overfit.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Inference&lt;/strong&gt; : As it can be seen in the table, the Fine-tuned BERT model produces the best accuracy results on the test data as compared to the GPT-2 and XLNet models. Thus, we present the Fine-tuned BERT model as our final supervised learning model with a test accuracy of 86%.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Future experiments:&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;unsupervised-learning-pipeline-for-efficient-inference&quot;&gt;Unsupervised Learning Pipeline for Efficient Inference&lt;/h3&gt;
 
-&lt;p&gt;Experiment 3 was the final set of experiments done for the supervised part of our project before the midpoint deadline.
-We also hope to gain insight by clustering similar questions and
-analyze the reason for their similarity, which may help in
-downstream tasks such as automatic question tagging, and
-personalized recommendation of questions based on the field of
-interest. This will be the unsupervised portion of our project.&lt;/p&gt;
+&lt;p&gt;We build an unsupervised learning pipeline in order to cluster similar questions. The pipeline consists of 3 steps :&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The first part of the pipeline consists of creating BERT embeddings of all the questions after preprocessing them.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We then perform Principal Component Analysis (PCA) in order to reduce the dimensionality of our dataset. From the below graph, we can infer that with just 15 components, 99 percent of the variance is retained.&lt;/p&gt;
 
-&lt;h1 id=&quot;proposed-timeline-and-responsibilities-&quot;&gt;Proposed Timeline and Responsibilities :&lt;/h1&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/46374506/144763989-c6abfce0-3003-4b3d-9921-d9aad90937f5.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We cluster the preprocessed dataset using Kmeans clustering algorithm. The elbow method plotted below, is used to find out the ideal number of clusters after analysing the tradeoff between performance and computation cost. From the graph, we can infer that the elbow is at 100 clusters&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/46374506/144764219-06373665-f8cb-429a-a9e6-fced14b99b33.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This unsupervised learning pipeline is used to create a smaller question space from which we can choose the candidate reference questions. This in turn reduces the time overhead by 100 times during inference. Here is an example illustrating potential canonical questions:&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/46374506/144765011-a35e1759-c413-47be-aa07-d9246e30c682.png&quot; alt=&quot;image&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;In this project, we propose a method to classify questions as similar or not similar using a combination of a supervised method and unsupervised method. For the unsupervised method, we use K-means clustering to group the questions in the dataset based on their sentence level embeddings, in order to narrow down the question space from which the reference questions are picked for comparison. The unsupervised pipeline gives us the candidate similar questions for each of the clusters. Through this, we were able to form 100 clusters which reduces our overhead significantly.&lt;/p&gt;
+
+&lt;p&gt;For the supervised method, we implement a combination of transformer based models (such as BERT, GPT-2, and XLNet) and a feed forward neural network to classify the test question as similar or not. After extensive results and ablations we were able to finalize our model as the pre-trained BERT model which is fine-tuned on our data. This supervised model classifies the given query question as similar or not after comparison with the top K reference questions obtained from the unsupervised pipeline based on their sentence embeddings. We achieve a test accuracy of 76% for this task.&lt;/p&gt;
+
+&lt;h1 id=&quot;future-experiments&quot;&gt;Future experiments:&lt;/h1&gt;
+
+&lt;p&gt;Future work may include downstream tasks such as automatic question tagging, and personalized recommendation of questions based on the field of interest. This can be very advantageous for forums such as Ed, Quora, Piazza, etc. and can help towards making the work of teaching staff easier.&lt;/p&gt;
+
+&lt;h1 id=&quot;timeline-and-responsibilities&quot;&gt;Timeline and Responsibilities&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&quot;https://yashjakhotiya.github.io/blog/images/2021-10-03-quora-question-pairs/timeline.png&quot; alt=&quot;&quot; title=&quot;Timeline&quot; /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;references-&quot;&gt;References :&lt;/h1&gt;
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
 &lt;ol&gt;
   &lt;li&gt;https://quoradata.quora.com/First-Quora-Dataset-Release-Question-Pairs&lt;/li&gt;
   &lt;li&gt;D. A. Prabowo and G. Budi Herwanto, “Duplicate Question Detection in Question Answer Website using Convolutional Neural Network,” 2019 5th International Conference on Science and Technology (ICST), 2019, pp. 1-6, doi: 10.1109/ICST47872.2019.9166343.&lt;/li&gt;
