@@ -73,7 +73,7 @@ $$(X^TX)^{-1}X^T$$
 
 when $X^TX$ is invertible!
 
-Read more about Moore-Penrose inversion [here](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse). The article defines Moore-Penrose inversion based on 4 Moore-Penrose conditions and then arrives at the SVD-based computation, but both of these are equivalent. You can define by the SVD-based computation and then prove those 4 conditions. Also, the A* notation there is known as Hermitian transpose, and is equal to the 'vanilla' transpose for real numbers.
+Read more about the Moore-Penrose inversion [here](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse). The article defines Moore-Penrose inversion based on 4 Moore-Penrose conditions and then arrives at the SVD-based computation, but both of these are equivalent. You can define by the SVD-based computation and then prove those 4 conditions. Also, the A* notation there is known as Hermitian transpose, and is equal to the 'vanilla' transpose for real numbers.
 
 Please feel free to correct me if you feel there's a mistake anywhere.
 
